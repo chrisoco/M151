@@ -20,6 +20,7 @@ Konsole an gewünschtem Ort öffnen und folgende Befehle ausführen
 - `php artisan migrate`
 - `php artisan db:seed`
 
+Umbedingt den Ordner M151 umbenennen zu m151 oder einen virtuellen Host erstellen!
 
 Die Installation kann überprüft werden indem man den Server startet
 
