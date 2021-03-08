@@ -20,10 +20,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item ml-lg-4">
 
-                <!--<a class="nav-link" href="{ route('student.home', auth()->user()->student) }">Home</a>-->
-
-                <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == 'd') active @endif" href="#">Dashboard
-                </a>
+                <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == 'd') active @endif" href="#">Dashboard</a>
                 </li>
                 <li class="nav-item ml-lg-4">
                     <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == 'planning') active @endif" href="#">Planer</a>
@@ -33,21 +30,30 @@
 
             <!-- Right Side Of Navbar -->
 
-            <ul class="navbar-nav mr-xl-5 ml-auto">
+            <ul class="navbar-nav mr-5 ml-auto">
 
+                @auth
                 <li class="nav-item large dropdown d-none d-md-block">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         <i class="fas fa-users-cog"></i><span class="caret"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{ { route('profile') }}">Profil</a>
-                        <a class="dropdown-item" href="{ { route('register') }}">Admin hinzufügen</a>
-                        <form id="logout-form" action="{ { route('logout') }}" method="POST">
-                            @csrf
-                            <input type="submit" class="dropdown-item" value="{{ __('Logout') }}">
-                        </form>
+
+                            <a class="dropdown-item" href="{ { route('profile') }}">Profil</a>
+                            <a class="dropdown-item" href="{ { route('register') }}">Admin hinzufügen</a>
+
+                            <form id="logout-form" action="{ { route('logout') }}" method="POST">
+                                @csrf
+                                <input type="submit" class="dropdown-item" value="{{ __('Logout') }}">
+                            </form>
+
                     </div>
                 </li>
+
+                @else
+                    <a class="btn btn-primary" href="{{ url('/login') }}">LogIn</a>
+                @endauth
+
             </ul>
 
     </div>
