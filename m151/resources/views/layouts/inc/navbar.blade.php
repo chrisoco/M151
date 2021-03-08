@@ -19,12 +19,14 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item ml-lg-4">
+                    <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == '') active @endif" href="{{ env('app_url') }}">Startseite</a>
+                </li>
 
-                <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == 'd') active @endif" href="#">Dashboard</a>
-                </li>
-                <li class="nav-item ml-lg-4">
-                    <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == 'planning') active @endif" href="#">Planer</a>
-                </li>
+                @auth
+                    <li class="nav-item ml-lg-4">
+                        <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == 'd') active @endif" href="#">Planer</a>
+                    </li>
+                @endauth
 
             </ul>
 
@@ -40,9 +42,9 @@
                     <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="navbarDropdown">
 
                             <a class="dropdown-item" href="{ { route('profile') }}">Profil</a>
-                            <a class="dropdown-item" href="{ { route('register') }}">Admin hinzufügen</a>
+                            <a class="dropdown-item" href="{{ route('register') }}">Admin hinzufügen</a>
 
-                            <form id="logout-form" action="{ { route('logout') }}" method="POST">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <input type="submit" class="dropdown-item" value="{{ __('Logout') }}">
                             </form>
