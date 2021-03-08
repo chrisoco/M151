@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resources([
+
+        'answer'    => 'AnswerController',
+        'categorie' => 'CategorieController',
+        'highscore' => 'HighscoreController',
+        'question'  => 'QuestionController',
+
+    ]);
