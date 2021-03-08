@@ -51,7 +51,7 @@
                 </li>
 
                 @else
-                    <a class="btn btn-primary" href="{{ url('/login') }}">LogIn</a>
+                    <a class="btn btn-primary" href="{{ route('login') }}">LogIn</a>
                 @endauth
 
             </ul>
