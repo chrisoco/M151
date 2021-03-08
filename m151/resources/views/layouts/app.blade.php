@@ -12,9 +12,6 @@
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/main.js') }}" defer></script>
-    <script src="{{ asset('js/Planer.js') }}" defer></script>
-    <script src="{{ asset('js/request.js') }}" defer></script>
     <script>
         var app_url = "{{ env('app_url') }}";
     </script>
@@ -33,31 +30,17 @@
 </head>
 <body style="-webkit-print-color-adjust: exact;">
     <div id="app">
-        @auth
-            @include('layouts.inc.navbar')
 
+        @include('layouts.inc.navbar')
 
-            @include('layouts.inc.menu')
-
-
-        @endauth
         @yield('floater')
 
         <div class="container-fluid mt-1">
             @yield('content')
         </div>
-        @auth
-            @include('layouts.inc.footer')
-        @endauth
+
+        @include('layouts.inc.footer')
 
     </div>
-    <script>
-        var disabled = document.getElementsByClassName("disabled");
-        for (var i = 0; i < disabled.length; i++) {
-            disabled[i].onclick = function(e) {
-                e.preventDefault();
-            }
-        }
-    </script>
 </body>
 </html>

@@ -23,5 +23,4 @@
 <footer class="footer bg-primary py-2 px-5 d-flex justify-content-between">
     <div></div>
     <div class="d-inline-flex"><span class="align-text-bottom"><i class="far fa-copyright"></i></span> 2020 Praxisfirma Alludo</div>
-    <div class="d-inline-flex"><a class="text-light" href="{{ route('bug.form') }}">Bug melden</a></div>
 </footer>
