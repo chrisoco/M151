@@ -1,0 +1,132 @@
+:root {
+    --menu-speed: 0.6s;
+}
+.side-menu {
+    display: block;
+    position: fixed;
+    width: 265px;
+    height: 100%;
+    background-color: #777;
+    box-shadow: 0px 0px 10px #333;
+    z-index: 2;
+    right: 0;
+    top: 0;
+}
+.side-menu {
+    left: -265px;
+}
+.side-menu.visible {
+    animation: var(--menu-speed) menu-in;
+    left: 0;
+
+}
+.side-menu.hidden {
+    animation: var(--menu-speed) menu-out;
+    left: -265px;
+}
+.side-menu .activator:hover i {
+    text-shadow: 0px 0px 5px #333;
+}
+.side-menu .menu-content {
+    display: block;
+    position: absolute;
+    background-color: #777;
+    top: 5em;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+}
+.side-menu .activator, .side-menu .activator-bg {
+    display: block;
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    border-radius: 60px;
+    background-color: #777;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+}
+.side-menu .activator, .side-menu .activator-bg {
+    right: -45px;
+    transform: rotate(180deg);
+}
+.side-menu.visible .activator, .side-menu.visible .activator-bg {
+    animation: var(--menu-speed) menu-activator-in;
+    right: -30px;
+    transform: rotate(0deg);
+}
+.side-menu.hidden .activator, .side-menu.hidden .activator-bg {
+    animation: var(--menu-speed) menu-activator-out;
+    right: -45px;
+    transform: rotate(180deg);
+}
+.side-menu .activator {
+    z-index: 3;
+}
+.side-menu .activator-bg {
+    box-shadow: 0px 0px 10px #333;
+    z-index: 1;
+}
+.side-menu .activator i {
+    font-size: 3em;
+    font-size: 60px;
+    color: #eee;
+}
+
+.side-menu .menu-content a {
+    display: block;
+    padding: 0.5em 2em;
+    color: #eee;
+}
+.side-menu .menu-content span {
+    display: block;
+    padding: 0.5em 2em;
+    color: #cccccc;
+    font-size: medium;
+}
+@keyframes menu-in {
+    from {
+        left: -265px;
+    }
+    to {
+        left: 0;
+    }
+}
+@keyframes menu-out {
+    from {
+        left: 0px;
+    }
+    to {
+        left: -265px;
+    }
+}
+@keyframes menu-activator-in {
+    0% {
+        transform: rotate(180deg);
+        right: -45px;
+    }
+    25% {
+        right: -30px;
+    }
+    100% {
+        transform: rotate(0deg);
+
+    }
+}
+@keyframes menu-activator-out {
+    0% {
+        transform: rotate(0deg);
+        right: -30px;
+    }
+    75% {
+        right: -30px;
+    }
+    100% {
+        transform: rotate(180deg);
+        right: -45px;
+    }
+}
