@@ -34,7 +34,7 @@
         </form>
         @if (Route::has('password.request'))
             <div class="d-flex justify-content-center">
-                <a class="btn btn-link" href="{{ route('password.request') }}">
+                <a class="btn btn-link disabled" href="{{ route('password.request') }}">
                     {{ __('Passwort vergessen?') }}
                 </a>
             </div>

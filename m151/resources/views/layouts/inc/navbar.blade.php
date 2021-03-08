@@ -19,12 +19,19 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item ml-lg-4">
-                    <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == '') active @endif" href="{{ env('app_url') }}">Startseite</a>
+                    <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == '') active @endif" href="{{ route('index') }}">Startseite</a>
                 </li>
 
                 @auth
-                    <li class="nav-item ml-lg-4">
-                        <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == 'd') active @endif" href="#">Planer</a>
+                    <li class="nav-item dropdown ml-lg-4">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Daten
+                        </a>
+                        <div class="dropdown-menu mt-2" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{ { route('school.index') }}">Schulen</a>
+                            <a class="dropdown-item" href="{ { route('department.index') }}">Abteilungen</a>
+                            <a class="dropdown-item" href="{ { route('template.index') }}">Template: Aufträge & Ziele</a>
+                        </div>
                     </li>
                 @endauth
 

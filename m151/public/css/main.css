@@ -126,3 +126,9 @@ body {
     color: #e3342f !important;
     padding-left: 1rem !important;
 }
+.btn-index {
+    width: 40% !important;
+    padding: 4rem !important;
+    margin-right: 0.5rem !important;
+    margin-left: 0.5rem !important;
+}
