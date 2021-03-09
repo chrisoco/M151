@@ -4,12 +4,12 @@
 
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 
-    <div class="container mt-5">
+    <div class="container">
 
         <form class="form-signin" method="POST" action="{{ route('login') }}">
             @csrf
 
-            <img class="border border-light rounded my-3 ml-n1" src="{{ asset('media/logo.png') }}" alt="Alludo Logo" width="400">
+            <img class="border border-light rounded mb-3 ml-n1" src="{{ asset('media/logo.png') }}" alt="Alludo Logo" width="400">
 
             @error('email')
             <div class="alert alert-dismissible alert-danger">
