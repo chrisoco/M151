@@ -20,7 +20,7 @@ class CreateQuestionsTable extends Migration
             $table->integer('answered_correct')->default(0);
             $table->integer('answered_false')->default(0);
 
-            $table->unsignedBigInteger('correct_answer');
+            $table->unsignedBigInteger('correct_answer')->nullable();
 
             $table->foreign('correct_answer')->references('id')->on('answers');
 

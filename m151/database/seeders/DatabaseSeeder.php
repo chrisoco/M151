@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             DefaultAdminAccSeeder::class,
+            GameSeeder::class,
+            HighscoreSeeder::class,
         ]);
     }
 }
