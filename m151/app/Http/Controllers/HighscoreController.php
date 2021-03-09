@@ -15,7 +15,7 @@ class HighscoreController extends Controller
     public function index()
     {
         return view('highscore.index', [
-            'list' => Highscore::all()->sortByDesc('points'),
+            'list' => Highscore::all()->where('points', '>', 0)->sortByDesc('points'),
         ]);
     }
 
