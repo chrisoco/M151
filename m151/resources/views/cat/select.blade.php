@@ -5,8 +5,9 @@
         <h1 class="my-4 mb-4 text-center">SELECT CAT:</h1>
 
         <div class="container d-flex flex-wrap justify-content-center mt-5">
-            <a class="btn btn-primary btn-index" style="font-size: 3rem" href="#">XYZ</a>
-            <a class="btn btn-primary btn-index" style="font-size: 3rem" href="#">XYZ</a>
+            @foreach($categories as $cat)
+            <a class="btn btn-primary btn-cat" href="{{ route('start_play.cat', $cat) }}">{{ $cat->name }}</a>
+            @endforeach
         </div>
 
     </div>

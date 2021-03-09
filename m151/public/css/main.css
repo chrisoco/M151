@@ -132,3 +132,8 @@ body {
     margin-right: 0.5rem !important;
     margin-left: 0.5rem !important;
 }
+.btn-cat {
+    width: 20% !important;
+    padding: 2rem !important;
+    margin: 0.5rem !important;
+}

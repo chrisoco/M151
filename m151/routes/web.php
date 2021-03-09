@@ -21,8 +21,10 @@ Route::get('/', function () {
 
 
 
-Route::get('cat/select', 'CategoryController@selectCat')->name('start_play');
-Route::get('highscores', 'HighscoreController@index')->name('highscores.index');
+Route::get('cat/select'   , 'CategoryController@selectCat')->name('start_play');
+Route::get('play/cat/{id}', 'Controller@setCat'           )->name('start_play.cat');
+Route::get('highscores'   , 'HighscoreController@index'   )->name('highscores.index');
+
 
 Route::group(['middleware' => 'auth'], function() {
 

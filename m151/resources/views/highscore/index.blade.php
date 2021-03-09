@@ -3,6 +3,8 @@
 @section('content')
     <div class="container">
         <h1 class="my-4 mb-4 text-center">Highscores!</h1>
+
+        <!-- https://examples.bootstrap-table.com/#view-source -->
         <table class="table table-hover">
             <thead>
             <tr>

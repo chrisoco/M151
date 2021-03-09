@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -19,7 +20,7 @@ class CategoryController extends Controller
     public function selectCat()
     {
         return view('cat.select',[
-            //
+            'categories' => Category::all(),
         ]);
     }
 
