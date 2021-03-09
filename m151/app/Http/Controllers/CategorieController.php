@@ -16,6 +16,13 @@ class CategorieController extends Controller
         //
     }
 
+    public function selectCat()
+    {
+        return view('cat.select',[
+            //
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

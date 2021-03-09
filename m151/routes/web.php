@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('index');
 })->name('index');
@@ -26,4 +28,9 @@ Route::resources([
 
     ]);
 
-Auth::routes();
+Route::get('cat/select', 'CategorieController@selectCat')->name('categorie.select');
+
+
+Route::group(['middleware' => 'auth'], function() {
+
+});
