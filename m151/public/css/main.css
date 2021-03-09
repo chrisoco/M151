@@ -137,3 +137,6 @@ body {
     padding: 2rem !important;
     margin: 0.5rem !important;
 }
+.btn-modal {
+    width: 10rem !important;
+}
