@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -37,5 +38,11 @@ class Highscore extends Model
     public function category()
     {
         return $this->belongsTo('App\Models\Category', 'categories_id');
+    }
+
+    public function getDurationAttribute() {
+        $created = Carbon::parse($this->created_at);
+        $started = Carbon::parse($this->started_at);
+        return $created->diffInSeconds($started);
     }
 }

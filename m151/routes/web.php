@@ -19,18 +19,18 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
-Route::resources([
 
-        'answer'    => 'AnswerController',
-        'categorie' => 'CategorieController',
-        'highscore' => 'HighscoreController',
-        'question'  => 'QuestionController',
 
-    ]);
-
-Route::get('cat/select', 'CategorieController@selectCat')->name('categorie.select');
-
+Route::get('cat/select', 'CategoryController@selectCat')->name('start_play');
+Route::get('highscores', 'HighscoreController@index')->name('highscores.index');
 
 Route::group(['middleware' => 'auth'], function() {
+
+    Route::resources([
+        'answer'    => 'AnswerController',
+        'category'  => 'CategoryController',
+        'highscore' => 'HighscoreController',
+        'question'  => 'QuestionController',
+    ]);
 
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Highscore;
 use Illuminate\Http\Request;
 
 class HighscoreController extends Controller
@@ -13,7 +14,9 @@ class HighscoreController extends Controller
      */
     public function index()
     {
-        //
+        return view('highscore.index', [
+            'list' => Highscore::all()->sortByDesc('points'),
+        ]);
     }
 
     /**

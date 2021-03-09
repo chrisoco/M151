@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Categorie;
+use App\Models\Category;
 use App\Models\Highscore;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -24,11 +24,12 @@ class HighscoreFactory extends Factory
     public function definition()
     {
         return [
-            'player_name' => $this->faker->name,
-            'points' => $this->faker->numberBetween(30, 300),
-            'points_s' => 0,
-            'categories_id' => Categorie::all()->random()->id,
-            'started_at' => Carbon::now()->subMinutes(10),
+            'player_name'   => $this->faker->name,
+            'started_at'    => Carbon::now()->subMinutes(10)->format('Y-m-d H:i:s'),
+            'points'        => $this->faker->numberBetween(30, 300),
+            'points_s'      => 0,
+            'categories_id' => Category::all()->random()->id,
+
         ];
     }
 
@@ -39,9 +40,11 @@ class HighscoreFactory extends Factory
             $started = Carbon::parse($h->started_at);
             $diff    = $created->diffInSeconds($started);
 
-            $h->points_s = round($h->points / $diff, 2);
+            $h->points_s   = round($h->points / $diff, 2);
+            $h->started_at = $started;
             $h->save();
 
         });
     }
+
 }

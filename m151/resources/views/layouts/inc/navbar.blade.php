@@ -19,7 +19,13 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item ml-lg-4">
-                    <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == '') active @endif" href="{{ route('index') }}">Startseite</a>
+                    <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == 'index') active @endif" href="{{ route('index') }}">Startseite</a>
+                </li>
+                <li class="nav-item ml-lg-4">
+                    <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == 'start_play') active @endif" href="{{ route('start_play') }}">Play</a>
+                </li>
+                <li class="nav-item ml-lg-4">
+                    <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == 'highscores') active @endif" href="{{ route('highscores.index') }}">Highscores</a>
                 </li>
 
                 @auth

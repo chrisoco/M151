@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Highscore;
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class HighscoreSeeder extends Seeder

@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Question[] $questions
  * @property Highscore[] $highscores
  */
-class Categorie extends Model
+class Category extends Model
 {
     use HasFactory;
     /**

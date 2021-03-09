@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Answer;
-use App\Models\Categorie;
+use App\Models\Category;
 use App\Models\Question;
 use Illuminate\Database\Seeder;
 
@@ -16,7 +16,7 @@ class GameSeeder extends Seeder
      */
     public function run()
     {
-        $categories = Categorie::factory()->count(8)->has(
+        $categories = Category::factory()->count(8)->has(
             Question::factory()->count(10)->has(
                 Answer::factory()->count(4)
             )
