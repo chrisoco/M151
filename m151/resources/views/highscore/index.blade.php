@@ -20,7 +20,7 @@
 
             <?php $i = 1; ?>
             @foreach($list as $score)
-                <tr>
+                <tr @if(session('player_name') && $score->player_name == session('player_name')) style="background-color: darkseagreen" @endif>
                     <th scope="row">{{ $i < 10 ? '0'.$i : $i }}</th>
                     <td>{{ $score->player_name }}</td>
                     <td>{{ $score->points }}</td>
