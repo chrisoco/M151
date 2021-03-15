@@ -10,7 +10,7 @@
     </script>
 
     <div class="container">
-        <h1 class="my-4 mb-4 text-center">WELCOME! @if(true) { { playername }} @endif</h1>
+        <h1 class="my-4 mb-4 text-center">WELCOME! @if(session('player_name')) {{ session('player_name') }} @endif</h1>
         <!--
         <div class="container d-flex flex-wrap justify-content-center mt-5">
             <a class="btn btn-primary btn-index" style="font-size: 3rem" href="{{ route('start_play') }}">Play</a>
@@ -19,17 +19,17 @@
         -->
         <div class="container d-flex flex-wrap justify-content-center mt-5">
 
-            <!-- @ if(player-name exists ) -->
-            <button type="button" id="modalButton" class="btn btn-primary btn-index" style="font-size: 3rem" data-toggle="modal" data-target="#ModalCenter">
-                Play
-            </button>
-            <!-- @ else
-                <a class="btn btn-primary btn-index" style="font-size: 3rem" href="{{ route('highscores.index') }}">Highscores</a>
-            -->
+            @if(session('player_name'))
+                <a class="btn btn-primary btn-index" style="font-size: 3rem" href="{{ route('start_play') }}">Play</a>
+            @else
+                <button type="button" id="modalButton" class="btn btn-primary btn-index" style="font-size: 3rem" data-toggle="modal" data-target="#ModalCenter">
+                    Play
+                </button>
+            @endif
             <a class="btn btn-primary btn-index" style="font-size: 3rem" href="{{ route('highscores.index') }}">Highscores</a>
         </div>
         <div class="row">
-            <a class="col offset-3" style="min-width: 100px" href="#">Reset User-Name</a>
+            <a class="col offset-3" style="min-width: 100px" href="{{ route('session.destroy') }}">Reset User-Name</a>
         </div>
 
         <!-- Modal -->

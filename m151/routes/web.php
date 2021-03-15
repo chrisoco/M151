@@ -24,7 +24,9 @@ Route::get('/', function () {
 Route::get('cat/select'   , 'CategoryController@selectCat')->name('start_play');
 Route::get('play/cat/{id}', 'Controller@setCat'           )->name('start_play.cat');
 Route::get('highscores'   , 'HighscoreController@index'   )->name('highscores.index');
-Route::post('setPlayerName', 'Controller@setPlayerName'   )->name('playername.set');
+
+Route::post('setPlayerName'  , 'Controller@setPlayerName'     )->name('playername.set');
+Route::get ('session/destroy', 'Controller@destroyGameSession')->name('session.destroy');
 
 
 Route::group(['middleware' => 'auth'], function() {

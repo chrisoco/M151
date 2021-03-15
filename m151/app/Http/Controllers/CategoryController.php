@@ -19,9 +19,14 @@ class CategoryController extends Controller
 
     public function selectCat()
     {
-        return view('cat.select',[
-            'categories' => Category::all(),
-        ]);
+        if(session('player_name')) {
+            return view('cat.select', [
+                'categories' => Category::all(),
+            ]);
+        }
+
+        return view('index');
+
     }
 
     /**

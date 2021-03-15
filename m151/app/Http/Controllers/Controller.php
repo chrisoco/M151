@@ -35,14 +35,18 @@ class Controller extends BaseController
                 ->withInput();
         }
 
-        // ddd($request);
+        session(['player_name' => $validator->getData()['player_name']]);
+
+        return redirect()->route('start_play');
+
     }
 
     public function setCat($id)
     {
         if(is_null(Category::find($id))) return redirect(route('start_play'));
 
-        session(['cat' => $id, 't' => 'bluub']);
+        // session(['cat' => $id, 't' => 'bluub']);
+        session(['cat' => $id]);
         ddd(session()->all());
 
     }
@@ -54,7 +58,11 @@ class Controller extends BaseController
 
     public function destroyGameSession()
     {
-        //
+        session()->forget('player_name');
+        session()->forget('cat');
+
+        return redirect()->route('index');
+
     }
 
 
