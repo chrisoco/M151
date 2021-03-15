@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+    <script>
+        @error('player_name')
+        $(document).ready(function () {
+            $("#modalButton").click();
+        });
+        @enderror
+    </script>
+
     <div class="container">
         <h1 class="my-4 mb-4 text-center">WELCOME! @if(true) { { playername }} @endif</h1>
         <!--
@@ -12,7 +20,7 @@
         <div class="container d-flex flex-wrap justify-content-center mt-5">
 
             <!-- @ if(player-name exists ) -->
-            <button type="button" class="btn btn-primary btn-index" style="font-size: 3rem" data-toggle="modal" data-target="#ModalCenter">
+            <button type="button" id="modalButton" class="btn btn-primary btn-index" style="font-size: 3rem" data-toggle="modal" data-target="#ModalCenter">
                 Play
             </button>
             <!-- @ else
@@ -47,8 +55,8 @@
                             </div>
 
                             @error('player_name')
-                                <div class="invalid-feedback">
-                                    {{ $message == 'x' ? '' : $message }}
+                                <div class="invalid-feedback offset-2">
+                                    {{ $message }}
                                 </div>
                             @enderror
 
