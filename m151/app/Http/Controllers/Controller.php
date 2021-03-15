@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -11,6 +12,17 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function setPlayerName(Request $request)
+    {
+        ddd($request);
+    }
 
     public function setCat($id)
     {
@@ -22,6 +34,11 @@ class Controller extends BaseController
     }
 
     public function initGameSession()
+    {
+        //
+    }
+
+    public function destroyGameSession()
     {
         //
     }

@@ -36,7 +36,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <form action="{ { route('school.store') }}" method="Post">
+                        <form action="{{ route('playername.set') }}" method="Post" id="playerNameForm">
                             @csrf
                             @method('POST')
 
@@ -56,7 +56,7 @@
 
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-success btn-modal">Play!</button>
+                        <button type="submit" form="playerNameForm" class="btn btn-success btn-modal">Play!</button>
                         <!-- <button type="button" class="btn btn-secondary btn-modal" data-dismiss="modal">Close</button> -->
                     </div>
                 </div>

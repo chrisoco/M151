@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="my-4 mb-4 text-center">SELECT CAT:</h1>
+        <h1 class="my-4 mb-4 text-center">SELECT Category:</h1>
 
         <div class="container d-flex flex-wrap justify-content-center mt-5">
             @foreach($categories as $cat)
