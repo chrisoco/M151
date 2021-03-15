@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -19,13 +20,20 @@ class CategoryController extends Controller
 
     public function selectCat()
     {
-        if(session('player_name')) {
-            return view('cat.select', [
-                'categories' => Category::all(),
-            ]);
+
+        $validator = Validator::make(session()->all(), [
+            'player_name' => ['required'],
+        ], [
+            'required' => 'Please enter a valid Username.',
+        ]);
+
+        if ($validator->fails()) {
+            return view('index')->withErrors($validator);
         }
 
-        return view('index');
+        return view('cat.select', [
+            'categories' => Category::all(),
+        ]);
 
     }
 

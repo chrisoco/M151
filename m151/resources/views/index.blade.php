@@ -3,10 +3,11 @@
 @section('content')
     <script>
         @error('player_name')
-        $(document).ready(function () {
-            $("#modalButton").click();
-        });
+            $(document).ready(function () {
+                $("#modalButton").click();
+            });
         @enderror
+
     </script>
 
     <div class="container">
