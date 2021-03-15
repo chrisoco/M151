@@ -8,7 +8,7 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">##</th>
                 <th scope="col">Name</th>
                 <th scope="col">Points</th>
                 <th scope="col">Duration</th>
@@ -21,7 +21,7 @@
             <?php $i = 1; ?>
             @foreach($list as $score)
                 <tr>
-                    <th scope="row">{{ $i }}</th>
+                    <th scope="row">{{ $i < 10 ? '0'.$i : $i }}</th>
                     <td>{{ $score->player_name }}</td>
                     <td>{{ $score->points }}</td>
                     <td>{{ $score->duration }}</td>
