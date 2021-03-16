@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="my-4 mb-4 text-center">Highscores!</h1>
+        <h3 class="my-4 text-center">Highscores!</h3>
 
         <!-- https://examples.bootstrap-table.com/#view-source -->
         <table class="table table-hover">
@@ -14,6 +14,9 @@
                 <th scope="col">Duration</th>
                 <th scope="col">Points / s</th>
                 <th scope="col">Category</th>
+                @auth
+                    <th scope="col"></th>
+                @endauth
             </tr>
             </thead>
             <tbody>
@@ -27,6 +30,16 @@
                     <td>{{ $score->duration }}</td>
                     <td>{{ $score->points_s }}</td>
                     <td>{{ $score->category->name }}</td>
+                    @auth
+                        <td>
+                            <form class="d-inline" action="{{ route('highscore.destroy', $score) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn-sm btn-danger" type="submit" value="Löschen"><i class="fas fa-trash-alt"></i></button>
+
+                            </form>
+                        </td>
+                    @endauth
                 </tr>
                 <?php $i++; ?>
             @endforeach

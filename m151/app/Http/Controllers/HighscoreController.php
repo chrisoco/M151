@@ -77,11 +77,13 @@ class HighscoreController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Highscore $highscore)
     {
-        //
+        $highscore->delete();
+        return redirect()->route('highscores.index');
     }
 }
