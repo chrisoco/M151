@@ -61,7 +61,11 @@
                                 <h4>{{ $cat->name . ' ' . $cat->id }}</h4>
                             </button>
                             <span style="z-index: 3; position: relative" class="edit_del_span">
-                                <a href="#" class="btn btn-danger float-right mr-3"><i class="fas fa-ban"></i></a>
+                                <form class="d-inline" action="{{ route('category.destroy', $cat) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger float-right mr-3" type="submit" value="Löschen"><i class="fas fa-ban"></i></button>
+                                </form>
                                 <a href="#" class="btn btn-primary float-right mr-3"><i class="fas fa-edit"></i></a>
                             </span>
 
