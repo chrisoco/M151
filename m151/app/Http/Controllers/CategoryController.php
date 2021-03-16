@@ -15,7 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('models.index', [
+            'categories' => Category::all(),
+        ]);
     }
 
     public function selectCat()
@@ -44,7 +46,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('cat.create');
     }
 
     /**

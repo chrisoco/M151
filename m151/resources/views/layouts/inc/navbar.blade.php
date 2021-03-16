@@ -27,17 +27,9 @@
                 <li class="nav-item ml-lg-4">
                     <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == 'highscores') active @endif" href="{{ route('highscores.index') }}">Highscores</a>
                 </li>
-
                 @auth
-                    <li class="nav-item dropdown ml-lg-4">
-                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Daten
-                        </a>
-                        <div class="dropdown-menu mt-2" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{ { route('school.index') }}">Schulen</a>
-                            <a class="dropdown-item" href="{ { route('department.index') }}">Abteilungen</a>
-                            <a class="dropdown-item" href="{ { route('template.index') }}">Template: Aufträge & Ziele</a>
-                        </div>
+                    <li class="nav-item ml-lg-4">
+                        <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == 'models_index') active @endif" href="{{ route('models_index') }}">Admin-Tool</a>
                     </li>
                 @endauth
 
