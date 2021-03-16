@@ -52,7 +52,7 @@
                                 </div>
 
                                 @error('player_name')
-                                    <div class="invalid-feedback offset-2">
+                                    <div class="col invalid-feedback text-center">
                                         {{ $message }}
                                     </div>
                                 @enderror
