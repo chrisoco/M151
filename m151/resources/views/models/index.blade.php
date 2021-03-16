@@ -66,7 +66,7 @@
                                     @method('DELETE')
                                     <button class="btn btn-danger float-right mr-3" type="submit" value="Löschen"><i class="fas fa-ban"></i></button>
                                 </form>
-                                <a href="#" class="btn btn-primary float-right mr-3"><i class="fas fa-edit"></i></a>
+                                <a href="{{ route('category.edit', $cat) }}" class="btn btn-primary float-right mr-3"><i class="fas fa-edit"></i></a>
                             </span>
 
                         </h2>

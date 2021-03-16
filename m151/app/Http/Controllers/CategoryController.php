@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -79,19 +80,27 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('cat.edit', [
+            'cat' => Category::find($id),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param CategoryRequest $request
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        //
+        $cat = Category::find($id);
+
+        $data = $request->validated();
+        $cat->fill($data)->save();
+
+        return redirect()->route('models_index');
+
     }
 
     /**
