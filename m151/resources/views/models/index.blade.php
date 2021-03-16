@@ -21,6 +21,13 @@
             return "";
         }
 
+        function displayModeSwap() {
+            var e = $(".edit_del_span" );
+
+            if  (e.css("display") == "none") e.css( "display", "inline" );
+            else                             e.css("display" , "none"   );
+        }
+
         $( document ).ready(function() {
 
             var str = getCookie("cat");
@@ -36,10 +43,13 @@
                     }, 500);
                 }
             }
+
         });
+
     </script>
+
     <div class="container pb-2">
-        <h5 class="my-4 mb-4 text-center">Categoriy, Questions & Answers</h5>
+        <h5 class="my-4 mb-4 text-center">Categoriy, Questions & Answers <button class="btn btn-primary" onclick="displayModeSwap()"><i class="fas fa-edit"></i></button></h5>
 
         <div class="accordion" id="accordionCat">
             @foreach($categories as $cat)
@@ -50,7 +60,7 @@
                             <button id="{{ 'btn-' . $cat->id }}" class="btn btn-link text-left shadow-none" type="button" data-toggle="collapse" data-target="{{ '#collapse-' . $cat->id }}" aria-expanded="false" aria-controls="{{ '#collapse-' . $cat->id }}" onclick="setCookie('cat', '{{ $cat->id }}')">
                                 <h4>{{ $cat->name . ' ' . $cat->id }}</h4>
                             </button>
-                            <span style="z-index: 3; position: relative" >
+                            <span style="z-index: 3; position: relative" class="edit_del_span">
                                 <a href="#" class="btn btn-danger float-right mr-3"><i class="fas fa-ban"></i></a>
                                 <a href="#" class="btn btn-primary float-right mr-3"><i class="fas fa-edit"></i></a>
                             </span>
@@ -69,7 +79,10 @@
                                                 <button id="{{ 'btn-' . $cat->id . '-' . $q->id }}" class="btn btn-link @if(count($q->answers) != 4) btn-outline-danger @endif text-left shadow-none" type="button" data-toggle="collapse" data-target="{{ '#collapse-' . $cat->id . '-' . $q->id }}" aria-expanded="false" aria-controls="{{ '#collapse-' . $cat->id . '-' . $q->id }}" onclick="setCookie('cat', '{{ $cat->id . '-' . $q->id }}')">
                                                     <h5>Q: {{ $q->value }}</h5>
                                                 </button>
-                                                <a href="{ { route('template.delete', [$dep->id, $task->id, 0]) }}" style="z-index: 3; position: relative" class="btn btn-danger float-right mr-3"><i class="fas fa-ban"></i></a>
+                                                <span style="z-index: 3; position: relative" class="edit_del_span">
+                                                    <a href="#" class="btn btn-danger float-right mr-3"><i class="fas fa-ban"></i></a>
+                                                    <a href="#" class="btn btn-primary float-right mr-3"><i class="fas fa-edit"></i></a>
+                                                </span>
                                             </h2>
                                         </div>
 
@@ -80,7 +93,7 @@
 
                                                     <div class="card text-left mb-1 @if($q->c_answer->id == $a->id) border-success @endif">
                                                         <div class="card-header">
-                                                            <p class="card-title m-0">{{ $a->value }}<a href="{ { route('template.delete', [$dep->id, $task->id, $goal->id]) }}" style="z-index: 3; position: relative" class="btn btn-danger float-right mr-3"><i class="fas fa-ban"></i></a></p>
+                                                            <p class="card-title m-0">{{ $a->value }}<a href="{ { route('template.delete', [$dep->id, $task->id, $goal->id]) }}" style="z-index: 3; position: relative" class="btn btn-danger float-right mr-3 edit_del_span"><i class="fas fa-ban"></i></a></p>
                                                             <a href="{ { route('template.goal.edit', $goal) }}" class="stretched-link"></a>
                                                         </div>
                                                     </div>
