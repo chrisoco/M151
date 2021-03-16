@@ -77,7 +77,7 @@ class HighscoreController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param Highscore $highscore
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
