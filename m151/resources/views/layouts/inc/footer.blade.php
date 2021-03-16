@@ -5,7 +5,7 @@
         width: 100%;
         color: white;
         overflow-x: hidden;
-        z-index: 2;
+        z-index: 5;
     }
 </style>
 <!--
