@@ -4,7 +4,6 @@
     <div class="container">
         <h4 class="my-4 mb-4 text-center">{{ $cat->name }} edit</h4>
 
-
         <form action="{{ route('category.update', $cat) }}" method="POST">
         @csrf
         @method('PUT')

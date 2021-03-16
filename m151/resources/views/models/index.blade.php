@@ -27,7 +27,7 @@
             if  (e.css("display") == "none") e.css( "display", "inline" );
             else                             e.css("display" , "none"   );
         }
-
+/*
         $( document ).ready(function() {
 
             var str = getCookie("cat");
@@ -44,7 +44,7 @@
                 }
             }
 
-        });
+        });*/
 
     </script>
 
@@ -58,7 +58,7 @@
                     <div class="card-header" id="{{ 'header-' . $cat->id }}">
                         <h2 class="mb-0">
                             <button id="{{ 'btn-' . $cat->id }}" class="btn btn-link text-left shadow-none" type="button" data-toggle="collapse" data-target="{{ '#collapse-' . $cat->id }}" aria-expanded="false" aria-controls="{{ '#collapse-' . $cat->id }}" onclick="setCookie('cat', '{{ $cat->id }}')">
-                                <h4>{{ $cat->name . ' ' . $cat->id }}</h4>
+                                <h4>{{ $cat->name }}</h4>
                             </button>
                             <span style="z-index: 3; position: relative" class="edit_del_span">
                                 <form class="d-inline" action="{{ route('category.destroy', $cat) }}" method="POST">
@@ -125,6 +125,30 @@
                     </div>
                 </div>
             @endforeach
+
+            <form action="{{ route('category.store') }}" method="Post">
+                @csrf
+                @method('POST')
+
+                <div class="card">
+
+                    <div class="card-header">
+                        <div class="form-group row m-0">
+                            <div class="col-md-2 h5">
+                                Create Category:
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Category Name" value="{{ old('name') }}">
+                            </div>
+
+                            <button type="submit" class="offset-1 btn btn-success"><i class="far fa-plus-square"></i></button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
         </div>
 
     </div>

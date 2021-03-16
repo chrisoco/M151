@@ -38,7 +38,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'required'   => 'x',
-            'unique'     => 'Wird bereits verwendet.'
+            'unique'     => 'Already in use.'
         ];
     }
 }
