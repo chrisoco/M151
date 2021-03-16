@@ -40,9 +40,16 @@ class Highscore extends Model
         return $this->belongsTo('App\Models\Category', 'categories_id');
     }
 
-    public function getDurationAttribute() {
+    public function getDurationAttribute()
+    {
         $created = Carbon::parse($this->created_at);
         $started = Carbon::parse($this->started_at);
         return $created->diffInSeconds($started);
     }
+
+    public function getDateAttribute()
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('H:i, d/m/y');
+    }
+
 }

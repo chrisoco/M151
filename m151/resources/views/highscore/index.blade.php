@@ -10,10 +10,11 @@
             <tr>
                 <th scope="col">##</th>
                 <th scope="col">Name</th>
+                <th scope="col"><i class="fas fa-sort-down"></i> Points / s</th>
                 <th scope="col">Points</th>
                 <th scope="col">Duration</th>
-                <th scope="col">Points / s</th>
                 <th scope="col">Category</th>
+                <th scope="col">Date</th>
                 @auth
                     <th scope="col"></th>
                 @endauth
@@ -26,10 +27,11 @@
                 <tr @if(session('player_name') && $score->player_name == session('player_name')) style="background-color: darkseagreen" @endif>
                     <th scope="row">{{ $i < 10 ? '0'.$i : $i }}</th>
                     <td>{{ $score->player_name }}</td>
+                    <td class="pl-4">{{ $score->points_s }}</td>
                     <td>{{ $score->points }}</td>
-                    <td>{{ $score->duration }}</td>
-                    <td>{{ $score->points_s }}</td>
+                    <td>{{ $score->duration . 's' }}</td>
                     <td>{{ $score->category->name }}</td>
+                    <td>{{ $score->date }}</td>
                     @auth
                         <td>
                             <form class="d-inline" action="{{ route('highscore.destroy', $score) }}" method="POST">
