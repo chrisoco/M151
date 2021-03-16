@@ -6,7 +6,7 @@
 </style>
 
 <nav class="navbar navbar-expand-md navbar-light bg-primary mb-2 sticky-top">
-    <a class="navbar-brand mx-1" href="{ { route('dashboard_active') }}">
+    <a class="navbar-brand mx-1" href="{{ route('index') }}">
         <img src="{{ asset('media/logo3.png') }}" class="img-fluid" width="100" alt="Wer wird Millionär Logo">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
