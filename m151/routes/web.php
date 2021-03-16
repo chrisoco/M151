@@ -15,14 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
-
+Route::get('/', function () { return view('index');})->name('index');
 
 
 Route::get('cat/select'   , 'CategoryController@selectCat')->name('start_play');
-Route::get('play/cat/{id}', 'SessionController@setCat'           )->name('start_play.cat');
+Route::get('play/cat/{id}', 'SessionController@setCat'    )->name('start_play.cat');
 Route::get('highscores'   , 'HighscoreController@index'   )->name('highscores.index');
 
 Route::post('setPlayerName'  , 'SessionController@setPlayerName'     )->name('playername.set');
