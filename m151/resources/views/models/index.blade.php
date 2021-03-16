@@ -47,13 +47,14 @@
 
                     <div class="card-header" id="{{ 'header-' . $cat->id }}">
                         <h2 class="mb-0">
-                            <button id="{{ 'btn-' . $cat->id }}" class="btn btn-link text-left" type="button" data-toggle="collapse" data-target="{{ '#collapse-' . $cat->id }}" aria-expanded="false" aria-controls="{{ '#collapse-' . $cat->id }}" onclick="setCookie('cat', '{{ $cat->id }}')">
+                            <button id="{{ 'btn-' . $cat->id }}" class="btn btn-link text-left shadow-none" type="button" data-toggle="collapse" data-target="{{ '#collapse-' . $cat->id }}" aria-expanded="false" aria-controls="{{ '#collapse-' . $cat->id }}" onclick="setCookie('cat', '{{ $cat->id }}')">
                                 <h4>{{ $cat->name . ' ' . $cat->id }}</h4>
                             </button>
                             <span style="z-index: 3; position: relative" >
                                 <a href="#" class="btn btn-danger float-right mr-3"><i class="fas fa-ban"></i></a>
                                 <a href="#" class="btn btn-primary float-right mr-3"><i class="fas fa-edit"></i></a>
                             </span>
+
                         </h2>
                     </div>
 
@@ -65,7 +66,7 @@
                                     <div class="card">
                                         <div class="card-header" id="{{ 'header-' . $cat->id . '-' . $q->id }}">
                                             <h2 class="mb-0">
-                                                <button id="{{ 'btn-' . $cat->id . '-' . $q->id }}" class="btn btn-link @if(count($q->answers) != 4) btn-outline-danger @endif text-left" type="button" data-toggle="collapse" data-target="{{ '#collapse-' . $cat->id . '-' . $q->id }}" aria-expanded="false" aria-controls="{{ '#collapse-' . $cat->id . '-' . $q->id }}" onclick="setCookie('cat', '{{ $cat->id . '-' . $q->id }}')">
+                                                <button id="{{ 'btn-' . $cat->id . '-' . $q->id }}" class="btn btn-link @if(count($q->answers) != 4) btn-outline-danger @endif text-left shadow-none" type="button" data-toggle="collapse" data-target="{{ '#collapse-' . $cat->id . '-' . $q->id }}" aria-expanded="false" aria-controls="{{ '#collapse-' . $cat->id . '-' . $q->id }}" onclick="setCookie('cat', '{{ $cat->id . '-' . $q->id }}')">
                                                     <h5>Q: {{ $q->value }}</h5>
                                                 </button>
                                                 <a href="{ { route('template.delete', [$dep->id, $task->id, 0]) }}" style="z-index: 3; position: relative" class="btn btn-danger float-right mr-3"><i class="fas fa-ban"></i></a>
