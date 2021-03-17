@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AnswerRequest;
 use App\Models\Answer;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AnswerController extends Controller
 {
@@ -36,7 +38,25 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // TODO: Correct doesn^t return value if checkbox is disabled ...
+        $validator = Validator::make($request->all(), [
+            'answer'  => ['required'],
+            'qID'     => ['required'],
+            'correct' => [''],
+        ], [
+            'required'   => 'x',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect(url()->previous())
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data = $validator->getData();
+
+        ddd($data);
+
     }
 
     /**

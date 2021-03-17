@@ -136,7 +136,6 @@
                                 </div>
                             </form>
 
-
                             @foreach($cat->questions as $q)
 
                                 <div class="accordion" id="accordionCatQuestion">
@@ -160,8 +159,51 @@
                                         <div id="{{ 'collapse-' . $cat->id . '-' . $q->id }}" class="collapse hidden" aria-labelledby="{{ 'header-' . $cat->ic . '-' . $q->id }}" data-parent="#accordionCatQuestion">
                                             <div class="card-body">
 
-                                                @foreach($q->answers as $a)
+                                                @if(count($q->answers) < 4)
+                                                    <form action="{{ route('answer.store') }}" method="Post">
+                                                        @csrf
+                                                        @method('POST')
 
+                                                        <div class="card edit_del_span_block">
+                                                            <div class="card-header">
+                                                                <div class="form-group row m-0">
+                                                                    <div class="col-form-label col-md-3">
+                                                                        Create Answer:
+                                                                    </div>
+                                                                    <div class="col-md-7">
+                                                                        <input type="hidden" name="qID" value="{{ $q->id }}">
+                                                                        <input type="text" class="form-control @if(old('qID') == $q->id) @error('answer') is-invalid @enderror @endif" name="answer" placeholder="Answer" value="{{ old('answer') }}">
+                                                                    </div>
+                                                                    <button type="submit" class="offset-1 btn btn-success"><i class="far fa-plus-square"></i></button>
+                                                                    @if(old('qID') == $q->id)
+                                                                        @error('question')
+                                                                        @if($message != 'x')
+                                                                            <div class="offset-2 invalid-feedback">
+                                                                                {{ $message }}
+                                                                            </div>
+                                                                        @endif
+                                                                        @enderror
+                                                                    @endif
+                                                                </div>
+
+                                                                @if(!$q->c_answer)
+                                                                    <div class="form-group row m-0 mt-1">
+                                                                        <div class="col-form-label col-md-3">
+                                                                            Answer is correct:
+                                                                        </div>
+                                                                        <div class="col-md-7">
+                                                                            <input type="checkbox" class="form-control" name="correct" @if(count($q->answers) == 3) checked disabled @endif>
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+
+                                                            </div>
+                                                        </div>
+                                                    </form>
+
+                                                @endif
+
+                                                @foreach($q->answers as $a)
                                                     <div class="card text-left mb-1 @if(!is_null($q->c_answer) && $q->c_answer->id == $a->id) border-success @endif">
                                                         <div class="card-header">
                                                             <form class="d-inline" action="{{ route('answer.destroy', $a) }}" method="POST">
