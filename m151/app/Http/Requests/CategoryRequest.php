@@ -37,8 +37,8 @@ class CategoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'required'   => 'x',
-            'unique'     => 'Already in use.'
+            'required' => 'x',
+            'unique'   => '\'' . $this->name . '\' is already used.'
         ];
     }
 }

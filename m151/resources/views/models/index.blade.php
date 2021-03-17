@@ -140,9 +140,14 @@
                             <div class="col-md-8">
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Category Name" value="{{ old('name') }}">
                             </div>
-
                             <button type="submit" class="offset-1 btn btn-success"><i class="far fa-plus-square"></i></button>
-
+                            @error('name')
+                                @if($message != 'x')
+                                    <div class="offset-2 invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @endif
+                            @enderror
                         </div>
                     </div>
 
