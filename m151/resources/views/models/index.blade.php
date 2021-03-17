@@ -55,7 +55,7 @@
     </script>
 
     <div class="container pb-2">
-        <h5 class="my-4 mb-4 text-center">Categoriy, Questions & Answers <button class="btn btn-primary" onclick="displayModeSwap()"><i class="fas fa-edit"></i></button></h5>
+        <h5 class="my-4 mb-4 text-center">Categoriy, Questions & Answers <button class="btn btn-primary" onclick="displayModeSwap()"><i class="fas fa-exchange-alt"></i></button></h5>
 
         <div class="accordion" id="accordionCat">
             <form action="{{ route('category.store') }}" method="Post">
@@ -107,7 +107,6 @@
                     <div id="{{ 'collapse-' . $cat->id }}" class="collapse hidden" aria-labelledby="{{ 'header-' . $cat->id }}" data-parent="#accordionCat">
                         <div class="card-body">
 
-                            <!-- TODO: error only if error id == this Question. -->
                             <form action="{{ route('question.store') }}" method="Post">
                                 @csrf
                                 @method('POST')
@@ -149,7 +148,7 @@
                                                 </button>
                                                 <span style="z-index: 3; position: relative" class="edit_del_span">
                                                     <a href="#" class="btn btn-danger float-right mr-3"><i class="fas fa-ban"></i></a>
-                                                    <a href="#" class="btn btn-primary float-right mr-3"><i class="fas fa-edit"></i></a>
+                                                    <a href="{{ route('question.edit', $q) }}" class="btn btn-primary float-right mr-3"><i class="fas fa-edit"></i></a>
                                                 </span>
                                             </h2>
                                         </div>

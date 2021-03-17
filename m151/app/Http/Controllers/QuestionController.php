@@ -6,6 +6,7 @@ use App\Http\Requests\QuestionRequest;
 use App\Models\Category;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class QuestionController extends Controller
 {
@@ -45,7 +46,7 @@ class QuestionController extends Controller
         ]);
 
         $c = Category::find($data['catID']);
-        
+
         $c->questions()->attach($q);
 
         return redirect()->route('models_index');
@@ -70,7 +71,9 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('question.edit', [
+            'q' => Question::find($id),
+        ]);
     }
 
     /**
@@ -82,7 +85,26 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'value'          => ['required'],
+            'correct_answer' => [''],
+        ], [
+            'required'   => 'x',
+        ]);
+
+
+        if ($validator->fails()) {
+            return redirect(url()->previous())
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $q    = Question::find($id);
+        $data = $validator->getData();
+
+        $q->fill($data)->save();
+
+        return redirect()->route('models_index');
     }
 
     /**
