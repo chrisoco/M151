@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
 class AnswerController extends Controller
@@ -77,8 +79,21 @@ class AnswerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Answer $answer)
     {
-        //
+        $q = Question::find($answer->questions[0]->id);
+
+
+        if($q->c_answer->id == $answer->id) {
+            $q->correct_answer = null;
+            $q->save();
+        }
+
+        //$q->answers()->detach($answer->id);
+        $answer->questions()->detach($q->id);
+
+        $answer->delete();
+
+        return redirect()->route('models_index');
     }
 }

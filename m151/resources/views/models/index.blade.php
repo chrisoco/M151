@@ -162,10 +162,15 @@
 
                                                 @foreach($q->answers as $a)
 
-                                                    <div class="card text-left mb-1 @if($q->c_answer->id == $a->id) border-success @endif">
+                                                    <div class="card text-left mb-1 @if(!is_null($q->c_answer) && $q->c_answer->id == $a->id) border-success @endif">
                                                         <div class="card-header">
-                                                            <p class="card-title m-0">{{ $a->value }}<a href="{ { route('template.delete', [$dep->id, $task->id, $goal->id]) }}" style="z-index: 3; position: relative" class="btn btn-danger float-right mr-3 edit_del_span"><i class="fas fa-ban"></i></a></p>
-                                                            <a href="{ { route('template.goal.edit', $goal) }}" class="stretched-link"></a>
+                                                            <form class="d-inline" action="{{ route('answer.destroy', $a) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button class="btn btn-danger float-right mr-3 edit_del_span"style="z-index: 3; position: relative" type="submit" value="Löschen"><i class="fas fa-ban"></i></button>
+                                                            </form>
+                                                            <p class="card-title m-0">{{ $a->value }}</p>
+                                                            <a href="{{ route('answer.edit', $a) }}" class="stretched-link"></a>
                                                         </div>
                                                     </div>
 
