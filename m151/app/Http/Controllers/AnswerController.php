@@ -92,7 +92,9 @@ class AnswerController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('models.answer.edit', [
+            'a' => Answer::find($id),
+        ]);
     }
 
     /**
@@ -104,7 +106,40 @@ class AnswerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'value'  => ['required'],
+            'correct' => [''],
+        ], [
+            'required'   => 'x',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect(url()->previous())
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data = $validator->getData();
+
+        $a = Answer::find($id);
+        $q = $a->questions[0];
+
+
+        if(array_key_exists('correct', $data) && $data['correct'] == 'on') {
+
+            if($q->c_answer && $q->c_answer->id != $q->id) {
+                $q->correct_answer = $a->id;
+                $q->save();
+            }
+
+        }
+        
+        $a->fill([
+            'value' => $data['value'],
+        ])->save();
+
+        return redirect()->route('models_index');
+
     }
 
     /**
