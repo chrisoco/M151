@@ -53,6 +53,16 @@
         });*/
 
     </script>
+    <!-- TODO:
+    var myCollapsible = document.getElementById('myCollapsible')
+    myCollapsible.addEventListener('hidden.bs.collapse', function () {
+        // do something...
+    })
+
+    -->
+
+    <!-- TODO: Input Validation Question + Category unique!! -->
+    <!-- TODO: Input Validation Question + Answers unique!! -->
 
     <div class="container pb-2">
         <h5 class="my-4 mb-4 text-center">Categoriy, Questions & Answers <button class="btn btn-primary" onclick="displayModeSwap()"><i class="fas fa-exchange-alt"></i></button></h5>
@@ -74,7 +84,7 @@
                             <button type="submit" class="offset-1 btn btn-success"><i class="far fa-plus-square"></i></button>
                             @error('name')
                             @if($message != 'x')
-                                <div class="offset-2 invalid-feedback">
+                                <div class="offset-3 invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @endif
