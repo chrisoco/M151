@@ -71,7 +71,7 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        return view('question.edit', [
+        return view('models.question.edit', [
             'q' => Question::find($id),
         ]);
     }
@@ -91,7 +91,6 @@ class QuestionController extends Controller
         ], [
             'required'   => 'x',
         ]);
-
 
         if ($validator->fails()) {
             return redirect(url()->previous())

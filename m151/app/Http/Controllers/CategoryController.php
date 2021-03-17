@@ -34,7 +34,7 @@ class CategoryController extends Controller
             return view('index')->withErrors($validator);
         }
 
-        return view('cat.select', [
+        return view('models.cat.select', [
             'categories' => Category::all(),
         ]);
 
@@ -47,7 +47,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('cat.create');
+        return view('models.cat.create');
     }
 
     /**
@@ -83,7 +83,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        return view('cat.edit', [
+        return view('models.cat.edit', [
             'cat' => Category::find($id),
         ]);
     }
