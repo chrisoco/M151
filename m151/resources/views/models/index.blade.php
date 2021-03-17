@@ -23,9 +23,15 @@
 
         function displayModeSwap() {
             var e = $(".edit_del_span" );
+            var f = $(".edit_del_span_block");
 
-            if  (e.css("display") == "none") e.css( "display", "inline" );
-            else                             e.css("display" , "none"   );
+            if  (e.css("display") == "none") {
+                 e.css("display", "inline");
+                 f.css("display", "block");
+            } else  {
+                 e.css("display", "none");
+                 f.css("display", "none");
+            }
         }
 /*
         $( document ).ready(function() {
@@ -52,13 +58,39 @@
         <h5 class="my-4 mb-4 text-center">Categoriy, Questions & Answers <button class="btn btn-primary" onclick="displayModeSwap()"><i class="fas fa-edit"></i></button></h5>
 
         <div class="accordion" id="accordionCat">
+            <form action="{{ route('category.store') }}" method="Post">
+                @csrf
+                @method('POST')
+
+                <div class="card edit_del_span_block">
+                    <div class="card-header">
+                        <div class="form-group row m-0">
+                            <div class="col-form-label col-md-3">
+                                Create Category:
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Category Name" value="{{ old('name') }}">
+                            </div>
+                            <button type="submit" class="offset-1 btn btn-success"><i class="far fa-plus-square"></i></button>
+                            @error('name')
+                            @if($message != 'x')
+                                <div class="offset-2 invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @endif
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </form>
+
             @foreach($categories as $cat)
                 <div class="card">
 
                     <div class="card-header" id="{{ 'header-' . $cat->id }}">
                         <h2 class="mb-0">
                             <button id="{{ 'btn-' . $cat->id }}" class="btn btn-link text-left shadow-none" type="button" data-toggle="collapse" data-target="{{ '#collapse-' . $cat->id }}" aria-expanded="false" aria-controls="{{ '#collapse-' . $cat->id }}" onclick="setCookie('cat', '{{ $cat->id }}')">
-                                <h4>{{ $cat->name }}</h4>
+                                <h4>{{ $cat->id .'. '. $cat->name }}</h4>
                             </button>
                             <span style="z-index: 3; position: relative" class="edit_del_span">
                                 <form class="d-inline" action="{{ route('category.destroy', $cat) }}" method="POST">
@@ -74,6 +106,38 @@
 
                     <div id="{{ 'collapse-' . $cat->id }}" class="collapse hidden" aria-labelledby="{{ 'header-' . $cat->id }}" data-parent="#accordionCat">
                         <div class="card-body">
+
+                            <!-- TODO: error only if error id == this Question. -->
+                            <form action="{{ route('question.store') }}" method="Post">
+                                @csrf
+                                @method('POST')
+
+                                <div class="card edit_del_span_block">
+                                    <div class="card-header">
+                                        <div class="form-group row m-0">
+                                            <div class="col-form-label col-md-3">
+                                                Create Question:
+                                            </div>
+                                            <div class="col-md-7">
+                                                <input type="hidden" name="catID" value="{{ $cat->id }}">
+                                                <input type="text" class="form-control @if(old('catID') == $cat->id) @error('question') is-invalid @enderror @endif" name="question" placeholder="Question" value="{{ old('question') }}">
+                                            </div>
+                                            <button type="submit" class="offset-1 btn btn-success"><i class="far fa-plus-square"></i></button>
+                                            @if(old('catID') == $cat->id)
+                                                @error('question')
+                                                    @if($message != 'x')
+                                                        <div class="offset-2 invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @endif
+                                                @enderror
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+
                             @foreach($cat->questions as $q)
 
                                 <div class="accordion" id="accordionCatQuestion">
@@ -125,34 +189,6 @@
                     </div>
                 </div>
             @endforeach
-
-            <form action="{{ route('category.store') }}" method="Post">
-                @csrf
-                @method('POST')
-
-                <div class="card">
-
-                    <div class="card-header">
-                        <div class="form-group row m-0">
-                            <div class="col-md-2 h5">
-                                Create Category:
-                            </div>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Category Name" value="{{ old('name') }}">
-                            </div>
-                            <button type="submit" class="offset-1 btn btn-success"><i class="far fa-plus-square"></i></button>
-                            @error('name')
-                                @if($message != 'x')
-                                    <div class="offset-2 invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @endif
-                            @enderror
-                        </div>
-                    </div>
-
-                </div>
-            </form>
 
         </div>
 
