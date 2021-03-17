@@ -38,6 +38,7 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
+
         // TODO: Correct doesn^t return value if checkbox is disabled ...
         $validator = Validator::make($request->all(), [
             'answer'  => ['required'],
@@ -55,7 +56,20 @@ class AnswerController extends Controller
 
         $data = $validator->getData();
 
-        ddd($data);
+        $a = Answer::create([
+            'value' => $data['answer'],
+        ]);
+
+        $q = Question::find($data['qID']);
+
+        $q->answers()->attach($a);
+
+        if(array_key_exists('correct', $data) && $data['correct'] == 'on' && is_null($q->c_answer)) {
+            $q->correct_answer = $a->id;
+            $q->save();
+        }
+
+        return redirect()->route('models_index');
 
     }
 
@@ -104,7 +118,7 @@ class AnswerController extends Controller
         $q = Question::find($answer->questions[0]->id);
 
 
-        if($q->c_answer->id == $answer->id) {
+        if(!is_null($q->c_answer) && $q->c_answer->id == $answer->id) {
             $q->correct_answer = null;
             $q->save();
         }

@@ -192,7 +192,10 @@
                                                                             Answer is correct:
                                                                         </div>
                                                                         <div class="col-md-7">
-                                                                            <input type="checkbox" class="form-control" name="correct" @if(count($q->answers) == 3) checked disabled @endif>
+                                                                            @if(count($q->answers) == 3)
+                                                                                <input type="hidden" name="correct" value="on">
+                                                                            @endif
+                                                                            <input type="checkbox" class="form-control" @if(count($q->answers) == 3) checked disabled @else name="correct" @endif>
                                                                         </div>
                                                                     </div>
                                                                 @endif
