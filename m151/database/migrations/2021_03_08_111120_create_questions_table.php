@@ -19,6 +19,7 @@ class CreateQuestionsTable extends Migration
             $table->string('value', 255);
             $table->integer('answered_correct')->default(0);
             $table->integer('answered_false')->default(0);
+            $table->softDeletes();
 
             $table->unsignedBigInteger('correct_answer')->nullable();
 
