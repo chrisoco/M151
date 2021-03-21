@@ -48,6 +48,8 @@ class SessionController extends Controller
             'q_completed' => array(1,2,3),
             'points'      => 0,
             'started_at'  => Carbon::now()->format('Y-m-d H:i:s'),
+            'joker'       => true,
+            'activeQID'   => 0,
         ]);
     }
 

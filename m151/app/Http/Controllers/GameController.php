@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Validator;
 class GameController extends Controller
 {
     /**
-     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -32,12 +31,29 @@ class GameController extends Controller
         }
 
 
-        $question = Question::all()->where('categories_id', session('cat'))->whereNotIn('id', session('q_completed'))->random();
+        if(session('activeQID') == 0) {
+            $question = Question::all()->where('categories_id', session('cat'))->whereNotIn('id', session('q_completed'))->random();
+            session(['activeQID' => $question->id]);
+        } else {
+            $question = Question::find(session('activeQID'));
+        }
 
         return view('game.index', [
             'q'   => $question,
         ]);
 
+    }
+
+    public function joker()
+    {
+
+        $question = Question::find(session('activeQID'));
+        session(['joker' => false]);
+
+
+        redirect()->route('play', [
+           'wrong_answers' => [],
+        ]);
     }
 
 }
