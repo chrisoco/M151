@@ -31,11 +31,11 @@ class GameController extends Controller
             return redirect()->route('start_play')->withErrors($validator);
         }
 
-        $cat = Category::find(session('cat'));
+
+        $question = Question::all()->where('categories_id', session('cat'))->whereNotIn('id', session('q_completed'))->random();
 
         return view('game.index', [
-            'cat' => $cat,
-            'q' => $cat->questions->whereNotIn('id', [1,2])->get(),
+            'q'   => $question,
         ]);
 
     }

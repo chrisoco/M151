@@ -45,7 +45,7 @@ class SessionController extends Controller
     public function initGameSession()
     {
         session([
-            'q_completed' => array(),
+            'q_completed' => array(1,2,3),
             'points'      => 0,
             'started_at'  => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
