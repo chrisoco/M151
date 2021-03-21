@@ -65,6 +65,21 @@ class CategoryController extends Controller
     }
 
     /**
+     * Restore Deleted Category
+     *
+     * @param Category $cat
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function restore($id)
+    {
+        $cat = Category::withTrashed()->find($id);
+
+        $cat->restore();
+
+        return redirect()->route('models_index');
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id

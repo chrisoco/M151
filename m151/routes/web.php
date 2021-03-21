@@ -29,6 +29,7 @@ Route::get ('session/destroy', 'SessionController@destroyGameSession')->name('se
 Route::group(['middleware' => 'auth'], function() {
 
     Route::get('models/edit', 'CategoryController@index')->name('models_index');
+    Route::get('cat/restore/{id}', 'CategoryController@restore')->name('category.restore');
 
     Route::resources([
         'answer'    => 'AnswerController',

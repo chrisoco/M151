@@ -127,7 +127,13 @@
                             @error('name')
                             @if($message != 'x')
                                 <div class="offset-3 invalid-feedback">
-                                    {{ $message }}
+
+                                    <?php $duplicateCat = \App\Models\Category::withTrashed()->where('name', old('name'))->first() ?>
+                                    @if($duplicateCat->trashed())
+                                        <span>Category '{{ $duplicateCat->name }}' has been Deleted at {{ $duplicateCat->deleted_at }} <a href="{{ route('category.restore', $duplicateCat) }}" class="btn btn-warning">Restore</a></span>
+                                    @else
+                                        {{ $message }}
+                                    @endif
                                 </div>
                             @endif
                             @enderror
