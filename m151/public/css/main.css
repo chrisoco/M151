@@ -140,3 +140,11 @@ body {
 .btn-modal {
     width: 10rem !important;
 }
+.custom-err-msg {
+    font-size: 0.8rem !important;
+}
+
+.custom-btn-link {
+    min-width: 10rem;
+    margin-right: 2rem;
+}
