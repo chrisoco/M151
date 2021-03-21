@@ -22,11 +22,14 @@
 
             <!-- TODO: Dropdown Search for correct Answer? -->
             <div class="form-group row">
-                <label class="col-md-2 col-form-label offset-2 text-right">CorrectAnswer <span class="text-danger">*</span></label>
+                <label class="col-md-2 col-form-label offset-2 text-right">CorrectAnswer @if(count($q->answers) > 0) <span class="text-danger">*</span> @endif</label>
                 <div class="col-md-4">
                     <select class="custom-select @error('correct_answer') is-invalid @enderror" name="correct_answer">
+                        @if(!$q->c_answer)
+                            <option value="" selected>No Answer Selected...</option>
+                        @endif
                         @foreach($q->answers as $a)
-                            <option value="{{ $a->id }}" @if($q->c_answer->id == $a->id) selected @endif>{{ $a->value }}</option>
+                            <option value="{{ $a->id }}" @if($q->c_answer && $q->c_answer->id == $a->id) selected @endif>{{ $a->value }}</option>
                         @endforeach
                     </select>
                 </div>
