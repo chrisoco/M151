@@ -11,8 +11,14 @@
 
                 <div class="container d-flex flex-wrap justify-content-center">
                     @foreach($q->answers as $a) <!-- TODO maybe make Form? // Post? -->
-                        <a class="btn btn-primary @if($q->c_answer->id == $a->id) btn-outline-success text-white @endif btn-question" href="">{{ $a->id .' '.$a->value }}</a>
-                    @endforeach
+                        <form action="{ { route('') }}" method="POST" id="{{ 'f-'.$a->id }}">
+                        @csrf
+                        @method('PUT')
+                            <input type="hidden" name="" value="{{ $a->id }}">
+                        </form>
+                        <button type="submit" form="{{ 'f-'.$a->id }}" class="btn btn-primary @if($q->c_answer->id == $a->id) btn-outline-success text-white @endif btn-question">{{ $a->id .' '.$a->value }}</button>
+
+                        @endforeach
                 </div>
 
             </div>
