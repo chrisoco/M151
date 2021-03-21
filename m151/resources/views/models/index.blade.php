@@ -2,8 +2,44 @@
 
 @section('content')
     <script>
+
+        var initComplete = false;
+
         function setCookie(cname, cvalue) {
-            document.cookie = cname + "=" + cvalue + ";";
+
+            if (initComplete) {
+                var cookie = getCookie("cat");
+
+                if(cvalue == cookie) {
+                    // Reset Sub Cat
+                    if(cvalue.includes("-")) {
+                        var cat = cvalue.split("-");
+                        document.cookie = cname + "=" + cat[0] + ";";
+                    } else {
+                        // Reset Cat if only Cat was selected
+                        document.cookie = cname + "=" + 0 + ";";
+                    }
+                } else {
+
+                    if(cookie.includes("-")) {
+                        var cat = cookie.split("-");
+
+                        if(cvalue == cat[0]) {
+                            // Reset Cat if sub Cat was selected and Cat is pressed.
+                            document.cookie = cname + "=" + 0 + ";";
+                        } else {
+                            // Set new Cat if sub Cat was selected and other Cat is pressed.
+                            document.cookie = cname + "=" + cvalue + ";";
+                        }
+
+                    } else {
+                        // Set new Cat if other Cat is pressed.
+                        document.cookie = cname + "=" + cvalue + ";";
+                    }
+
+                }
+            }
+
         }
 
         function getCookie(cname) {
@@ -33,7 +69,7 @@
                  f.css("display", "none");
             }
         }
-/*
+
         $( document ).ready(function() {
 
             var str = getCookie("cat");
@@ -46,11 +82,16 @@
                 if (x.length > 1) {
                     setTimeout(function () {
                         $("#btn-" + str).trigger('click');
+                        initComplete = true; // complete Load if sub Cat was selected.
                     }, 500);
+                } else {
+                    initComplete = true; // complete Load is only Cat was selected.
                 }
+            } else {
+                initComplete = true; // complete Load if Cat == 0. (none Selected).
             }
 
-        });*/
+        });
 
     </script>
     <!-- TODO:
