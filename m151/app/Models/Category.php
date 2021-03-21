@@ -34,7 +34,7 @@ class Category extends Model
      */
     public function questions()
     {
-        return $this->belongsToMany('App\Models\Question', 'categories_questions', 'categories_id', 'questions_id');
+        return $this->hasMany('App\Models\Question', 'categories_id');
     }
 
     /**

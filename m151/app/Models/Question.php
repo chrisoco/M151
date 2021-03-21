@@ -44,9 +44,9 @@ class Question extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function categories()
+    public function category()
     {
-        return $this->belongsToMany('App\Models\Category', 'categories_questions', 'questions_id', 'categories_id');
+        return $this->belongsTo('App\Models\Category', 'categories_id');
     }
 
     /**
