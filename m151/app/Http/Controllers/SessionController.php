@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -11,7 +12,6 @@ class SessionController extends Controller
 
     public function setPlayerName(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'player_name' => ['required'],
         ], [
@@ -36,19 +36,28 @@ class SessionController extends Controller
 
         // session(['cat' => $id, 't' => 'bluub']);
         session(['cat' => $id]);
-        ddd(session()->all());
+        $this->initGameSession();
+
+        return redirect()->route('play');
 
     }
 
     public function initGameSession()
     {
-        //
+        session([
+            'q_completed' => array(),
+            'points'      => 0,
+            'started_at'  => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
     }
 
     public function destroyGameSession()
     {
         session()->forget('player_name');
         session()->forget('cat');
+        session()->forget('q_completed');
+        session()->forget('points');
+        session()->forget('started_at');
 
         return redirect()->route('index');
 

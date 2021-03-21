@@ -19,7 +19,8 @@ Route::get('/', function () { return view('index');})->name('index');
 
 
 Route::get('cat/select'   , 'CategoryController@selectCat')->name('start_play');
-Route::get('play/cat/{id}', 'SessionController@setCat'    )->name('start_play.cat');
+Route::get('cat/set/{id}' , 'SessionController@setCat'    )->name('start_play.cat');
+Route::get('play'         , 'GameController@index'        )->name('play');
 Route::get('highscores'   , 'HighscoreController@index'   )->name('highscores.index');
 
 Route::post('setPlayerName'  , 'SessionController@setPlayerName'     )->name('playername.set');

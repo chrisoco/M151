@@ -31,7 +31,7 @@ class CategoryController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return view('index')->withErrors($validator);
+            return redirect()->route('index')->withErrors($validator);
         }
 
         return view('models.cat.select', [
