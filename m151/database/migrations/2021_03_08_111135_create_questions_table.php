@@ -22,8 +22,11 @@ class CreateQuestionsTable extends Migration
             $table->softDeletes();
 
             $table->unsignedBigInteger('correct_answer')->nullable();
+            $table->unsignedBigInteger('categories_id');
 
             $table->foreign('correct_answer')->references('id')->on('answers');
+            $table->foreign('categories_id')->references('id')->on('categories');
+
 
         });
     }
