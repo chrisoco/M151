@@ -122,9 +122,15 @@ class GameController extends Controller
 
             //session(['joker' => false]);
 
-            $question = Question::find(session('activeQID'));
+            $q = Question::find(session('activeQID'));
 
-            $validator->getMessageBag()->add('answer');
+            $a1 = Answer::all()->where('question_id', $q->id)->whereNotIn('id', $q->c_answer->id)->random();
+            $a2 = Answer::all()->where('question_id', $q->id)->whereNotIn('id', [$q->c_answer->id, $a1->id])->random();
+
+            //ddd($a1->id .' '. $a2->id);
+
+            session(['jokerAnswers' => [$a1->id, $a2->id]]);
+            $validator->getMessageBag()->add('joker', $a1->id . '-' . $a2->id);
 
         }
 

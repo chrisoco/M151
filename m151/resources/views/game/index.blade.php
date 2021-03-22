@@ -2,6 +2,9 @@
 
 @section('content')
 
+    @error('joker')
+        <?php $j = explode('-', $message); ?>
+    @enderror
     <div class="container d-flex flex-wrap justify-content-center mt-5">
 
         <div class="card text-center" style="width: 100%">
@@ -31,7 +34,17 @@
                                 <input type="hidden" name="question_id" value="{{ $q->id }}">
                                 <input type="hidden" name="answer_id"   value="{{ $a->id }}">
                             </form>
-                            <button type="submit" form="{{ 'f-'.$a->id }}" class="btn btn-primary @auth @if($q->c_answer->id == $a->id) btn-outline-success text-white @endif @endauth btn-question">{{ $a->id .' '.$a->value }}</button>
+                            <button type="submit" form="{{ 'f-'.$a->id }}"
+                                    class="btn btn-primary
+                                        @auth @if($q->c_answer->id == $a->id)
+                                            btn-outline-success text-white
+                                        @endif @endauth btn-question"
+                                @error('joker')
+                                    @if(in_array($a->id, $j))
+                                        disabled
+                                    @endif
+                                @enderror
+                            >{{ $a->id .' '.$a->value }}</button>
                         @enderror
                     @endforeach
                 </div>
