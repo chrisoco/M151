@@ -25,7 +25,7 @@
                     Answer is correct:
                 </div>
                 <div class="col-md-4">
-                    <input type="checkbox" class="form-control" name="correct" @if($a->questions[0]->c_answer && $a->questions[0]->c_answer->id == $a->id) checked @endif>
+                    <input type="checkbox" class="form-control" name="correct" @if($a->question->c_answer && $a->question->c_answer->id == $a->id) checked @endif>
                 </div>
             </div>
 

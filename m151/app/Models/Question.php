@@ -31,7 +31,7 @@ class Question extends Model
     /**
      * @var array
      */
-    protected $fillable = ['correct_answer', 'created_at', 'updated_at', 'value', 'answered_correct', 'answered_false'];
+    protected $fillable = ['categories_id', 'correct_answer', 'created_at', 'updated_at', 'value', 'answered_correct', 'answered_false'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -54,7 +54,7 @@ class Question extends Model
      */
     public function answers()
     {
-        return $this->belongsToMany('App\Models\Answer', 'questions_answers', 'questions_id', 'answers_id');
+        return $this->hasMany('App\Models\Answer', 'question_id');
     }
 
     public function setAnswerCountAttribute($value)

@@ -200,10 +200,11 @@
                                     <div class="card">
                                         <div class="card-header" id="{{ 'header-' . $cat->id . '-' . $q->id }}">
                                             <h2 class="mb-0">
-                                                <button id="{{ 'btn-' . $cat->id . '-' . $q->id }}" class="btn btn-link custom-btn-link @if(count($q->answers) != 4) btn-outline-danger @endif text-left shadow-none" type="button" data-toggle="collapse" data-target="{{ '#collapse-' . $cat->id . '-' . $q->id }}" aria-expanded="false" aria-controls="{{ '#collapse-' . $cat->id . '-' . $q->id }}" onclick="setCookie('cat', '{{ $cat->id . '-' . $q->id }}')">
+                                                <button id="{{ 'btn-' . $cat->id . '-' . $q->id }}" class="btn btn-link custom-btn-link @if(count($q->answers) != 4 || is_null($q->c_answer)) btn-outline-danger @endif text-left shadow-none" type="button" data-toggle="collapse" data-target="{{ '#collapse-' . $cat->id . '-' . $q->id }}" aria-expanded="false" aria-controls="{{ '#collapse-' . $cat->id . '-' . $q->id }}" onclick="setCookie('cat', '{{ $cat->id . '-' . $q->id }}')">
                                                     <h5>Q: {{ $q->value }}</h5>
                                                 </button>
-                                                @if(count($q->answers) != 4)<span class="text-danger custom-err-msg">You need 4 Answers..</span> @endif
+                                                @if(count($q->answers) != 4) <span class="text-danger custom-err-msg">4 Answers needed..</span> @endif
+                                                @if(is_null($q->c_answer)) <span class="text-danger custom-err-msg">No correct Answer..</span> @endif
                                                 <span style="z-index: 3; position: relative" class="edit_del_span">
                                                     <form class="d-inline" action="{{ route('question.destroy', $q) }}" method="POST">
                                                         @csrf

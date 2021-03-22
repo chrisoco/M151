@@ -26,7 +26,7 @@ class Answer extends Model
     /**
      * @var array
      */
-    protected $fillable = ['created_at', 'updated_at', 'value'];
+    protected $fillable = ['question_id', 'created_at', 'updated_at', 'value'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -39,8 +39,8 @@ class Answer extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function questions()
+    public function question()
     {
-        return $this->belongsToMany('App\Models\Question', 'questions_answers', 'answers_id', 'questions_id');
+        return $this->belongsTo('App\Models\Question', 'question_id');
     }
 }

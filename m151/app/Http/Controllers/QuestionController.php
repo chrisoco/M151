@@ -41,13 +41,10 @@ class QuestionController extends Controller
 
         $data = $request->validated();
 
-        $q = Question::create([
+        Question::create([
             'value' => $data['question'],
+            'categories_id' => $data['catID'],
         ]);
-
-        $c = Category::find($data['catID']);
-
-        $c->questions()->attach($q);
 
         return redirect()->route('models_index');
     }

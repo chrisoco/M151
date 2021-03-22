@@ -57,11 +57,10 @@ class AnswerController extends Controller
 
         $a = Answer::create([
             'value' => $data['answer'],
+            'question_id' => $data['qID'],
         ]);
 
         $q = Question::find($data['qID']);
-
-        $q->answers()->attach($a);
 
         if(array_key_exists('correct', $data) && $data['correct'] == 'on' && is_null($q->c_answer)) {
             $q->correct_answer = $a->id;
@@ -121,16 +120,19 @@ class AnswerController extends Controller
         $data = $validator->getData();
 
         $a = Answer::find($id);
-        $q = $a->questions[0];
+        $q = $a->question;
 
 
         if(array_key_exists('correct', $data) && $data['correct'] == 'on') {
 
-            if($q->c_answer && $q->c_answer->id != $q->id) {
+            if(is_null($q->c_answer) || $q->c_answer->id != $a->id) {
                 $q->correct_answer = $a->id;
                 $q->save();
             }
 
+        } else if($q->c_answer && $q->c_answer->id == $a->id) {
+            $q->correct_answer = null;
+            $q->save();
         }
 
         $a->fill([
@@ -149,16 +151,12 @@ class AnswerController extends Controller
      */
     public function destroy(Answer $answer)
     {
-        $q = Question::find($answer->questions[0]->id);
-
+        $q = $answer->question;
 
         if(!is_null($q->c_answer) && $q->c_answer->id == $answer->id) {
             $q->correct_answer = null;
             $q->save();
         }
-
-        //$q->answers()->detach($answer->id);
-        $answer->questions()->detach($q->id);
 
         $answer->delete();
 
