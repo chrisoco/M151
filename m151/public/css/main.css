@@ -153,3 +153,9 @@ body {
     padding: 2rem !important;
     margin: 0.5rem !important;
 }
+.btn-question-footer {
+    min-width: 12rem !important;
+    font-weight: bold;
+    margin-right: 0.5rem !important;
+    margin-left: 0.5rem !important;
+}

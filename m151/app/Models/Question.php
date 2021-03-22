@@ -56,4 +56,31 @@ class Question extends Model
     {
         return $this->belongsToMany('App\Models\Answer', 'questions_answers', 'questions_id', 'answers_id');
     }
+
+    public function setAnswerCountAttribute($value)
+    {
+        if($value) {
+            $this->attributes['answered_correct'] = $this->attributes['answered_correct'] + 1;
+        } else {
+            $this->attributes['answered_false']   = $this->attributes['answered_false'] + 1;
+        }
+        $this->save();
+    }
+
+    public function getCorrectAnsweredPercentAttribute()
+    {
+        if($this->attributes['answered_correct'] == 0) return 0;
+
+        $max = $this->attributes['answered_correct'] + $this->attributes['answered_false'];
+        return round(100 / $max * $this->attributes['answered_correct']);
+    }
+
+    public function getFalseAnsweredPercentAttribute()
+    {
+        if($this->attributes['answered_false'] == 0) return 0;
+
+        return 100 - $this->getCorrectAnsweredPercentAttribute();
+    }
+
+
 }
