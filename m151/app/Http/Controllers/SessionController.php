@@ -63,6 +63,7 @@ class SessionController extends Controller
         session()->forget('activeQID');
         session()->forget('joker');
         session()->forget('jokerAnswers');
+        session()->forget('errDisplayed');
 
         return redirect()->route('index');
 

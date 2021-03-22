@@ -33,13 +33,27 @@ class GameController extends Controller
         }
 
         if(session('activeQID') == 0) {
+
+            session()->forget('errDisplayed');
+
             $question = Question::all()->where('categories_id', session('cat'))->whereNotIn('id', session('q_completed'))->random();
             session(['activeQID' => $question->id]);
+
         } else {
 
-            $question = Question::find(session('activeQID'));
-            // TODO: Make Function to run Validation again if already answered.
-            // Difference between F5 (reload) and show Player his Answer???
+            if(array_key_exists('errDisplayed', session()->all()) && session('errDisplayed')) {
+
+                session()->forget('errDisplayed');
+
+                $question = Question::all()->where('categories_id', session('cat'))->whereNotIn('id', session('q_completed'))->random();
+                session(['activeQID' => $question->id]);
+
+            } else {
+
+                $question = Question::find(session('activeQID'));
+
+            }
+
         }
 
         return view('game.index', [

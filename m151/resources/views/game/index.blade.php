@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+    
     <div class="container d-flex flex-wrap justify-content-center mt-5">
 
         <div class="card text-center" style="width: 100%">
@@ -23,6 +23,7 @@
                 <div class="container d-flex flex-wrap justify-content-center">
                     @foreach($q->answers as $a)
                         @error('answer')
+                            <?php session(['errDisplayed' => true]) ?>
                             <button class="btn btn-primary @if($message == $a->id) btn-danger @endif @if($q->c_answer->id == $a->id) btn-success text-white @endif btn-question">{{ $a->id .' '.$a->value }}</button>
                         @else
                             <form action="{{ route('play.answer') }}" method="POST" id="{{ 'f-'.$a->id }}">
