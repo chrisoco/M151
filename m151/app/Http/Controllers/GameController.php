@@ -102,8 +102,8 @@ class GameController extends Controller
         $completed = session('q_completed');
         array_push($completed, $id);
 
-        // session(['q_completed' => $completed]);
-        // session(['activeQID' => 0]);
+        session(['q_completed' => $completed]);
+        session(['activeQID' => 0]);
 
     }
 
@@ -120,21 +120,18 @@ class GameController extends Controller
 
         if(session('joker')) {
 
-            //session(['joker' => false]);
+            session(['joker' => false]);
 
             $q = Question::find(session('activeQID'));
 
             $a1 = Answer::all()->where('question_id', $q->id)->whereNotIn('id', $q->c_answer->id)->random();
             $a2 = Answer::all()->where('question_id', $q->id)->whereNotIn('id', [$q->c_answer->id, $a1->id])->random();
 
-            //ddd($a1->id .' '. $a2->id);
-
             session(['jokerAnswers' => [$a1->id, $a2->id]]);
-            $validator->getMessageBag()->add('joker', $a1->id . '-' . $a2->id);
 
         }
 
-        return redirect(url()->previous())->withErrors($validator);
+        return redirect(url()->previous());
 
     }
 
