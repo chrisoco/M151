@@ -36,7 +36,10 @@ class GameController extends Controller
             $question = Question::all()->where('categories_id', session('cat'))->whereNotIn('id', session('q_completed'))->random();
             session(['activeQID' => $question->id]);
         } else {
+
             $question = Question::find(session('activeQID'));
+            // TODO: Make Function to run Validation again if already answered.
+            // Difference between F5 (reload) and show Player his Answer???
         }
 
         return view('game.index', [
@@ -63,23 +66,37 @@ class GameController extends Controller
         $q = Question::find($data['question_id']);
         $a = Answer::find($data['answer_id']);
 
-        // TODO: Save Question answered Correct / False
+
+        $completed = session('q_completed');
+        $completed = in_array($q->id, $completed);
+
+
         if($q->c_answer->id == $a->id) {
 
-            $q->answer_count = true;
             $validator->getMessageBag()->add('answer', 'c');
-            $this->addPoints();
+
+            if(!$completed) {
+                $q->answer_count = true;
+                $this->addPoints();
+            }
 
         } else {
 
-            $q->answer_count = false;
             $validator->getMessageBag()->add('answer', $a->id);
-            $this->quizFailed();
+
+            if(!$completed) {
+                $q->answer_count = false;
+                $this->quizFailed();
+            }
 
         }
 
-        $this->completeQuestion($q->id);
+        if(!$completed) {
+            $completed = session('q_completed');
+            array_push($completed, $q->id);
 
+            session(['q_completed' => $completed]);
+        }
 
         return redirect(url()->previous())->withErrors($validator);
 
@@ -97,13 +114,15 @@ class GameController extends Controller
         session(['points' => $points]);
     }
 
-    public function completeQuestion($id)
+    public function endQuestion($id)
     {
         $completed = session('q_completed');
-        array_push($completed, $id);
 
-        session(['q_completed' => $completed]);
-        session(['activeQID' => 0]);
+        if(in_array($id, $completed)) {
+            session(['activeQID' => 0]);
+        }
+
+        return redirect()->route('play');
 
     }
 
