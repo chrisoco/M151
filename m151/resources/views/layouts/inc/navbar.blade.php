@@ -22,7 +22,7 @@
                     <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == 'index') active @endif" href="{{ route('index') }}">Startseite</a>
                 </li>
                 <li class="nav-item ml-lg-4">
-                    <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == 'start_play') active @endif" href="{{ route('start_play') }}">Play</a>
+                    <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == 'play') active @endif" href="{{ route('play') }}">Play</a>
                 </li>
                 <li class="nav-item ml-lg-4">
                     <a class="nav-link @if(explode('.', Route::currentRouteName())[0] == 'highscores') active @endif" href="{{ route('highscores.index') }}">Highscores</a>

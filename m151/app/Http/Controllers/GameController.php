@@ -109,14 +109,27 @@ class GameController extends Controller
 
     public function joker()
     {
-
-        $question = Question::find(session('activeQID'));
-        session(['joker' => false]);
-
-
-        redirect()->route('play', [
-           'wrong_answers' => [],
+        $validator = Validator::make(session()->all(), [
+            'joker'     => ['required'],
+            'activeQID' => ['required'],
         ]);
+
+        if ($validator->fails()) {
+            return redirect(url()->previous());
+        }
+
+        if(session('joker')) {
+
+            //session(['joker' => false]);
+
+            $question = Question::find(session('activeQID'));
+
+            $validator->getMessageBag()->add('answer');
+
+        }
+
+        return redirect(url()->previous())->withErrors($validator);
+
     }
 
 }

@@ -60,6 +60,8 @@ class SessionController extends Controller
         session()->forget('q_completed');
         session()->forget('points');
         session()->forget('started_at');
+        session()->forget('activeQID');
+        session()->forget('joker');
 
         return redirect()->route('index');
 

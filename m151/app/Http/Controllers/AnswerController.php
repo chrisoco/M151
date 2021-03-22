@@ -39,7 +39,6 @@ class AnswerController extends Controller
     public function store(Request $request)
     {
 
-        // TODO: Correct doesn^t return value if checkbox is disabled ...
         $validator = Validator::make($request->all(), [
             'answer'  => ['required'],
             'qID'     => ['required'],
@@ -133,7 +132,7 @@ class AnswerController extends Controller
             }
 
         }
-        
+
         $a->fill([
             'value' => $data['value'],
         ])->save();

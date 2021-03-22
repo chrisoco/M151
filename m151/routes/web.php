@@ -21,8 +21,9 @@ Route::get('/', function () { return view('index');})->name('index');
 Route::get ('cat/select'   , 'CategoryController@selectCat')->name('start_play');
 Route::get ('cat/set/{id}' , 'SessionController@setCat'    )->name('start_play.cat');
 Route::get ('play'         , 'GameController@index'        )->name('play');
-Route::post('play/answer' , 'GameController@answer'       )->name('play.answer');
+Route::post('play/answer'  , 'GameController@answer'       )->name('play.answer');
 Route::get ('highscores'   , 'HighscoreController@index'   )->name('highscores.index');
+Route::get ('joker'        , 'GameController@joker'        )->name('joker');
 
 Route::post('setPlayerName'  , 'SessionController@setPlayerName'     )->name('playername.set');
 Route::get ('session/destroy', 'SessionController@destroyGameSession')->name('session.destroy');

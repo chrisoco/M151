@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    
+
     <div class="container d-flex flex-wrap justify-content-center mt-5">
 
         <div class="card text-center" style="width: 100%">
@@ -49,7 +49,7 @@
                         @endif
                     @else
                         @if(session('joker'))
-                            <a class="btn btn-outline-success btn-question-footer" href="#">50 / 50 Joker</a>
+                            <a class="btn btn-outline-success btn-question-footer" href="{{ route('joker') }}">50 / 50 Joker</a>
                         @else
                             <button class="btn btn-dark btn-question-footer" disabled>50 / 50 Joker</button>
                         @endif
