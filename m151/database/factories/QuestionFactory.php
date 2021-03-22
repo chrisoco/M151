@@ -22,7 +22,9 @@ class QuestionFactory extends Factory
     public function definition()
     {
         return [
-            'value' => $this->faker->sentence,
+            'value'            => $this->faker->sentence,
+            'answered_correct' => $this->faker->numberBetween(0, 10),
+            'answered_false'   => $this->faker->numberBetween(0, 10),
         ];
     }
 }

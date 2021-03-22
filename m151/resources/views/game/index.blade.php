@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
-    @error('answer') Answer Correct! {{ $message }} @enderror
-
+    
     <div class="container d-flex flex-wrap justify-content-center mt-5">
 
         <div class="card text-center" style="width: 100%">
