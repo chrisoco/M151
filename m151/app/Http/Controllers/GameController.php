@@ -11,6 +11,15 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
+    /**
+     *
+     * TODO: Create Funktion to store Highscore for over() and end()
+     * TODO: Check if next Question exists (in case all 10 are correct)...
+     * TODO: Register Admin Acc & Add Auth to Register...
+     * TODO: Update Profile of Admin Acc...
+     *
+     */
+
 {
     /**
      *
@@ -166,6 +175,19 @@ class GameController extends Controller
 
     public function over()
     {
+        // TODO: Create Funktion to store Highscore for over() and end()
+
         return view('game.over', []);
     }
+
+    public function end()
+    {
+        //
+    }
+
+    public function createHighscore()
+    {
+
+    }
+
 }
