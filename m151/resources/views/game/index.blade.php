@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    
+
     <div class="container d-flex flex-wrap justify-content-center mt-5">
 
         <div class="card text-center" style="width: 100%">

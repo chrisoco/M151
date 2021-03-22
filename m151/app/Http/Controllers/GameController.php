@@ -81,36 +81,28 @@ class GameController extends Controller
         $a = Answer::find($data['answer_id']);
 
 
-        $completed = session('q_completed');
-        $completed = in_array($q->id, $completed);
-
-
         if($q->c_answer->id == $a->id) {
 
             $validator->getMessageBag()->add('answer', 'c');
 
-            if(!$completed) {
-                $q->answer_count = true;
-                $this->addPoints();
-            }
+            $q->answer_count = true;
+            $this->addPoints();
 
         } else {
 
             $validator->getMessageBag()->add('answer', $a->id);
 
-            if(!$completed) {
-                $q->answer_count = false;
-                $this->quizFailed();
-            }
+            $q->answer_count = false;
+            $this->quizFailed();
 
         }
 
-        if(!$completed) {
-            $completed = session('q_completed');
-            array_push($completed, $q->id);
 
-            session(['q_completed' => $completed]);
-        }
+        $completed = session('q_completed');
+        array_push($completed, $q->id);
+
+        session(['q_completed' => $completed]);
+
 
         return redirect(url()->previous())->withErrors($validator);
 
