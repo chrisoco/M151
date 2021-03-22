@@ -20,13 +20,15 @@
                     Play
                 </button>
             @else
-                <a class="btn btn-primary btn-index" style="font-size: 3rem" href="{{ route('start_play') }}">Play</a>
+                <a class="btn btn-primary btn-index" style="font-size: 3rem" href="{{ route('play') }}">Play</a>
             @endif
             <a class="btn btn-primary btn-index" style="font-size: 3rem" href="{{ route('highscores.index') }}">Highscores</a>
         </div>
         <div class="row">
             <a class="col offset-3" style="min-width: 100px" href="{{ route('session.destroy') }}">Reset User-Name</a>
         </div>
+
+        {{ print_r(session()->all()) }}
 
         <!-- Modal -->
         @if(!session('player_name'))

@@ -51,7 +51,7 @@
                     @error('answer')
                         @if($message == 'c')
                             <span class="btn btn-primary btn-question-footer">Points: {{ session('points') }}</span>
-                            <a class="btn btn-outline-success btn-question-footer" href="{{ route('play') }}">Continue Next Question</a>
+                            <a class="btn btn-outline-success btn-question-footer" href="{{ route('play.next', $q->id) }}">Continue Next Question</a>
                         @else
                             <span class="btn btn-primary btn-question-footer">Points: {{ session('points') }}</span>
                             <a class="btn btn-outline-danger btn-question-footer" href="#">Continue End Screen</a> <!-- TODO: End This.-->
