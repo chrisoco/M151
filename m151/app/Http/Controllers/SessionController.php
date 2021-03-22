@@ -50,6 +50,7 @@ class SessionController extends Controller
             'started_at'  => Carbon::now()->format('Y-m-d H:i:s'),
             'joker'       => true,
             'activeQID'   => 0,
+            'gameOver'    => false,
         ]);
     }
 
@@ -64,6 +65,7 @@ class SessionController extends Controller
         session()->forget('joker');
         session()->forget('jokerAnswers');
         session()->forget('errDisplayed');
+        session()->forget('gameOver');
 
         return redirect()->route('index');
 

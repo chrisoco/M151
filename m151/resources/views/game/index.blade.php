@@ -54,8 +54,9 @@
                             <span class="btn btn-primary btn-question-footer">Points: {{ session('points') }}</span>
                             <a class="btn btn-outline-success btn-question-footer" href="{{ route('play.next', $q->id) }}">Continue Next Question</a>
                         @else
+                            <?php session(['gameOver' => true]) ?>
                             <span class="btn btn-primary btn-question-footer">Points: {{ session('points') }}</span>
-                            <a class="btn btn-outline-danger btn-question-footer" href="#">Continue End Screen</a> <!-- TODO: End This.-->
+                            <a class="btn btn-outline-danger btn-question-footer" href="{{ route('play.over') }}">Continue End Screen</a>
                         @endif
                     @else
                         @if(session('joker'))

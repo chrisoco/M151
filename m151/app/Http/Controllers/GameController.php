@@ -43,6 +43,10 @@ class GameController extends Controller
 
             if(array_key_exists('errDisplayed', session()->all()) && session('errDisplayed')) {
 
+                if(array_key_exists('gameOver', session()->all()) && session('gameOver')) {
+                    return redirect()->route('play.over');
+                }
+
                 session()->forget('errDisplayed');
 
                 $question = Question::all()->where('categories_id', session('cat'))->whereNotIn('id', session('q_completed'))->random();
@@ -160,4 +164,8 @@ class GameController extends Controller
 
     }
 
+    public function over()
+    {
+        return view('game.over', []);
+    }
 }
