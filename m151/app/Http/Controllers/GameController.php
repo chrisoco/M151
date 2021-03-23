@@ -178,10 +178,11 @@ class GameController extends Controller
 
     public function over()
     {
-        // TODO: Create Funktion to store Highscore for over() and end()
+        $h = $this->createHighscore();
 
+        if($h) return view('game.over');
 
-        return view('game.over', []);
+        return redirect()->route('highscores.index');
     }
 
     public function end()
@@ -213,14 +214,15 @@ class GameController extends Controller
             'points_s'       => 0,
         ]);
 
+        if($h->points > 0) {
+            $created = Carbon::parse($h->created_at);
+            $started = Carbon::parse($h->started_at);
+            $diff = $created->diffInSeconds($started);
 
-        $created = Carbon::parse($h->created_at);
-        $started = Carbon::parse($h->started_at);
-        $diff    = $created->diffInSeconds($started);
-
-        $h->points_s   = round($h->points / $diff, 2);
-        $h->started_at = $started;
-        $h->save();
+            $h->points_s = round($h->points / $diff, 2);
+            $h->started_at = $started;
+            $h->save();
+        }
 
         session()->forget([
             'cat', 'q_completed', 'points', 'started_at',
