@@ -32,9 +32,10 @@ class SessionController extends Controller
 
     public function setCat($id)
     {
-        if(is_null(Category::find($id))) return redirect(route('start_play'));
+        if(is_null(Category::find($id)) || Category::find($id)->not_valid) {
+            return redirect(route('start_play'));
+        }
 
-        // session(['cat' => $id, 't' => 'bluub']);
         session(['cat' => $id]);
         $this->initGameSession();
 

@@ -44,4 +44,19 @@ class Category extends Model
     {
         return $this->hasMany('App\Models\Highscore', 'categories_id');
     }
+
+    // TODO: Check if Cat Valid and Q->A
+    public function getNotValidAttribute()
+    {
+        if(count($this->questions) < 3) return true;
+
+        foreach($this->questions as $q) {
+
+            if(count($q->answers) != 4 || is_null($q->c_answer)) return true;
+
+        }
+
+        return false;
+
+    }
 }

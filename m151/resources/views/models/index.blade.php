@@ -148,7 +148,12 @@
                     <div class="card-header" id="{{ 'header-' . $cat->id }}">
                         <h2 class="mb-0">
                             <button id="{{ 'btn-' . $cat->id }}" class="btn btn-link text-left shadow-none" type="button" data-toggle="collapse" data-target="{{ '#collapse-' . $cat->id }}" aria-expanded="false" aria-controls="{{ '#collapse-' . $cat->id }}" onclick="setCookie('cat', '{{ $cat->id }}')">
-                                <h4>{{ $cat->id .'. '. $cat->name }}</h4>
+                                <h4>
+                                    @if($cat->not_valid)
+                                        <span class="text-danger ml-n3">!!</span>
+                                    @endif
+                                    {{ $cat->id .'. '. $cat->name }}
+                                </h4>
                             </button>
                             <span style="z-index: 3; position: relative" class="edit_del_span">
                                 <form class="d-inline" action="{{ route('category.destroy', $cat) }}" method="POST">
