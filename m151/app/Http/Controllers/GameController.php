@@ -15,9 +15,7 @@ use Illuminate\Http\Request;
 class GameController extends Controller
     /**
      *
-     * TODO: Register Admin Acc & Add Auth to Register...
-     * TODO: Update Profile of Admin Acc...
-     * TODO: Disable Cat if Question or Answer are not complete on select_cat
+     * TODO: Update Profile of Admin Acc...?
      *
      */
 

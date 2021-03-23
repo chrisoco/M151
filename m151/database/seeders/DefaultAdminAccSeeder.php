@@ -21,7 +21,6 @@ class DefaultAdminAccSeeder extends Seeder
                 'prename'  => 'admin',
                 'email'    => 'admin@admin.ch',
                 'password' => Hash::make('123'),
-                'isAdmin'  => '1'
             ]
         ];
 
