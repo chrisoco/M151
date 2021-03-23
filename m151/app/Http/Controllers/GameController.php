@@ -14,16 +14,11 @@ use Illuminate\Http\Request;
 
 class GameController extends Controller
     /**
-     *
      * TODO: Update Profile of Admin Acc...?
-     *
      */
 
 {
-    /**
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $validator = Validator::make(session()->all(), [
@@ -40,11 +35,14 @@ class GameController extends Controller
             return redirect()->route('start_play')->withErrors($validator);
         }
 
+
+        $questions = Question::all()->where('categories_id', session('cat'))->whereNotIn('id', session('q_completed'));
+
+
         if(session('activeQID') == 0) {
 
             session()->forget('errDisplayed');
 
-            $questions = Question::all()->where('categories_id', session('cat'))->whereNotIn('id', session('q_completed'));
             if($questions->isEmpty()) { return redirect()->route('play.end'); }
 
             $question  = $questions->random();
@@ -61,7 +59,6 @@ class GameController extends Controller
 
                 session()->forget('errDisplayed');
 
-                $questions = Question::all()->where('categories_id', session('cat'))->whereNotIn('id', session('q_completed'));
                 if($questions->isEmpty()) { return redirect()->route('play.end'); }
 
                 $question = $questions->random();
@@ -69,7 +66,6 @@ class GameController extends Controller
 
             } else {
 
-                $questions = Question::all()->where('categories_id', session('cat'))->whereNotIn('id', session('q_completed'));
                 $question  = Question::find(session('activeQID'));
 
             }
@@ -123,7 +119,6 @@ class GameController extends Controller
         array_push($completed, $q->id);
 
         session(['q_completed' => $completed]);
-
 
         return redirect(url()->previous())->withErrors($validator);
 
@@ -209,7 +204,6 @@ class GameController extends Controller
         ]);
 
         if ($validator->fails()) { return false;}
-
 
         $h = Highscore::create([
             'started_at'     => session('started_at'),

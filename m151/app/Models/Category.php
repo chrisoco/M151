@@ -45,7 +45,7 @@ class Category extends Model
         return $this->hasMany('App\Models\Highscore', 'categories_id');
     }
 
-    // TODO: Check if Cat Valid and Q->A
+
     public function getNotValidAttribute()
     {
         if(count($this->questions) < 3) return true;

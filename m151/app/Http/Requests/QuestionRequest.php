@@ -23,7 +23,6 @@ class QuestionRequest extends FormRequest
      */
     public function rules()
     {
-
         return [
             'catID'    => ['required'],
             'question' => ['required'],

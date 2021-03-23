@@ -58,16 +58,10 @@ class SessionController extends Controller
     public function destroyGameSession()
     {
         session()->forget([
-            'player_name',
-            'cat',
-            'q_completed',
-            'points',
-            'started_at',
-            'activeQID',
-            'joker',
-            'jokerAnswers',
-            'errDisplayed',
-            'gameOver',
+            'player_name', 'cat', 'q_completed',
+            'points', 'started_at', 'activeQID',
+            'joker', 'jokerAnswers', 'errDisplayed',
+            'gameOver'
         ]);
 
         return redirect()->route('index');

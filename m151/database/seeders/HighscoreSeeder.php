@@ -14,6 +14,6 @@ class HighscoreSeeder extends Seeder
      */
     public function run()
     {
-        Highscore::factory()->count(15)->create();
+        Highscore::factory()->count(10)->create();
     }
 }

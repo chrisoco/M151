@@ -17,7 +17,7 @@ class GameSeeder extends Seeder
     public function run()
     {
         $categories = Category::factory()->count(8)->has(
-            Question::factory()->count(3)->has(
+            Question::factory()->count(10)->has(
                 Answer::factory()->count(4)
             )
         )->create();

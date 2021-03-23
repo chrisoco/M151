@@ -13,28 +13,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
-
+/** Home Route */
 Route::get('/', function () { return view('index');})->name('index');
 
+/** Player Routes (Settings + Highscores) */
+Route::get ('cat/select'     , 'CategoryController@selectCat'        )->name('start_play'      );
+Route::get ('highscores'     , 'HighscoreController@index'           )->name('highscores.index');
+Route::post('setPlayerName'  , 'SessionController@setPlayerName'     )->name('playername.set'  );
+Route::get ('session/destroy', 'SessionController@destroyGameSession')->name('session.destroy' );
+Route::get ('cat/set/{id}'   , 'SessionController@setCat'            )->name('start_play.cat'  );
 
-Route::get ('cat/select'   , 'CategoryController@selectCat')->name('start_play');
-Route::get ('cat/set/{id}' , 'SessionController@setCat'    )->name('start_play.cat');
-Route::get ('play'         , 'GameController@index'        )->name('play');
-Route::post('play/answer'  , 'GameController@answer'       )->name('play.answer');
-Route::get ('highscores'   , 'HighscoreController@index'   )->name('highscores.index');
-Route::get ('joker'        , 'GameController@joker'        )->name('joker');
-Route::get ('next/{id}'    , 'GameController@endQuestion'  )->name('play.next');
-Route::get ('play/over'    , 'GameController@over'         )->name('play.over');
-Route::get ('play/end'     , 'GameController@end'          )->name('play.end');
+/** Game Routes */
+Route::get ('play'       , 'GameController@index'      )->name('play'       );
+Route::post('play/answer', 'GameController@answer'     )->name('play.answer');
+Route::get ('joker'      , 'GameController@joker'      )->name('joker'      );
+Route::get ('next/{id}'  , 'GameController@endQuestion')->name('play.next'  );
+Route::get ('play/over'  , 'GameController@over'       )->name('play.over'  );
+Route::get ('play/end'   , 'GameController@end'        )->name('play.end'   );
 
-Route::post('setPlayerName'  , 'SessionController@setPlayerName'     )->name('playername.set');
-Route::get ('session/destroy', 'SessionController@destroyGameSession')->name('session.destroy');
+/** Auth Routes (Login, Register, Logout) */
+Auth::routes();
 
-
+/** Admin Routes for CRUD Models */
 Route::group(['middleware' => 'auth'], function() {
 
-    Route::get('models/edit', 'CategoryController@index')->name('models_index');
+    Route::get('models/edit'     , 'CategoryController@index'  )->name('models_index');
     Route::get('cat/restore/{id}', 'CategoryController@restore')->name('category.restore');
 
     Route::resources([

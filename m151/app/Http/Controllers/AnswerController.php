@@ -11,26 +11,6 @@ use Illuminate\Support\Facades\Validator;
 class AnswerController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -44,7 +24,7 @@ class AnswerController extends Controller
             'qID'     => ['required'],
             'correct' => [''],
         ], [
-            'required'   => 'x',
+            'required' => 'x',
         ]);
 
         if ($validator->fails()) {
@@ -56,7 +36,7 @@ class AnswerController extends Controller
         $data = $validator->getData();
 
         $a = Answer::create([
-            'value' => $data['answer'],
+            'value'       => $data['answer'],
             'question_id' => $data['qID'],
         ]);
 
@@ -69,17 +49,6 @@ class AnswerController extends Controller
 
         return redirect()->route('models_index');
 
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -105,10 +74,10 @@ class AnswerController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'value'  => ['required'],
+            'value'   => ['required'],
             'correct' => [''],
         ], [
-            'required'   => 'x',
+            'required' => 'x',
         ]);
 
         if ($validator->fails()) {
@@ -121,7 +90,6 @@ class AnswerController extends Controller
 
         $a = Answer::find($id);
         $q = $a->question;
-
 
         if(array_key_exists('correct', $data) && $data['correct'] == 'on') {
 
@@ -146,8 +114,9 @@ class AnswerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Answer $answer)
     {

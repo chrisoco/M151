@@ -44,6 +44,7 @@ class Highscore extends Model
     {
         $created = Carbon::parse($this->created_at);
         $started = Carbon::parse($this->started_at);
+
         return $created->diffInSeconds($started);
     }
 
