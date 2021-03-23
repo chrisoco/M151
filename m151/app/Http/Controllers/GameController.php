@@ -15,8 +15,6 @@ use Illuminate\Http\Request;
 class GameController extends Controller
     /**
      *
-     * TODO: Create Funktion to store Highscore for over() and end()
-     * TODO: Check if next Question exists (in case all 10 are correct)...
      * TODO: Register Admin Acc & Add Auth to Register...
      * TODO: Update Profile of Admin Acc...
      * TODO: Disable Cat if Question or Answer are not complete on select_cat
@@ -48,8 +46,12 @@ class GameController extends Controller
 
             session()->forget('errDisplayed');
 
-            $question = Question::all()->where('categories_id', session('cat'))->whereNotIn('id', session('q_completed'))->random();
+            $questions = Question::all()->where('categories_id', session('cat'))->whereNotIn('id', session('q_completed'));
+            if($questions->isEmpty()) { return redirect()->route('play.end'); }
+
+            $question  = $questions->random();
             session(['activeQID' => $question->id]);
+
 
         } else {
 
@@ -61,7 +63,10 @@ class GameController extends Controller
 
                 session()->forget('errDisplayed');
 
-                $question = Question::all()->where('categories_id', session('cat'))->whereNotIn('id', session('q_completed'))->random();
+                $questions = Question::all()->where('categories_id', session('cat'))->whereNotIn('id', session('q_completed'));
+                if($questions->isEmpty()) { return redirect()->route('play.end'); }
+
+                $question = $questions->random();
                 session(['activeQID' => $question->id]);
 
             } else {
