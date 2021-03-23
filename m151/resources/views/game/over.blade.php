@@ -10,6 +10,7 @@
                 <h1>GAME OVER!</h1>
             </div>
             <a href="{{ route('highscores.index') }}" class="btn btn-outline-primary">View Highscores</a>
+
         </div>
 
     </div>

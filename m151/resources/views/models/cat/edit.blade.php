@@ -27,6 +27,7 @@
                     <input class="btn btn-primary ml-2" type="submit" value="Update">
                 </div>
             </div>
+            
         </form>
     </div>
 @endsection

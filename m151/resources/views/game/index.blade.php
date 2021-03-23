@@ -5,6 +5,7 @@
     <div class="container d-flex flex-wrap justify-content-center mt-5">
 
         <div class="card text-center" style="width: 100%">
+
             <div class="card-header">
                 <h3>{{ $q->value }}?</h3>
             </div>
@@ -19,7 +20,6 @@
             </div>
 
             <div class="card-body">
-
                 <div class="container d-flex flex-wrap justify-content-center">
                     @foreach($q->answers as $a)
                         @error('answer')
@@ -45,8 +45,8 @@
                         @enderror
                     @endforeach
                 </div>
-
             </div>
+
             <div class="card-footer">
                 <div class="container d-flex flex-wrap justify-content-center">
                     @error('answer')
@@ -101,8 +101,6 @@
                 </div>
             </div>
 
-
         </div>
-
     </div>
 @endsection

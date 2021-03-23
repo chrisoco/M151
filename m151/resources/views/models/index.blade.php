@@ -70,7 +70,7 @@
             }
         }
 
-        $( document ).ready(function() {
+        $(document).ready(function() {
 
             var str = getCookie("cat");
 
@@ -88,26 +88,19 @@
                     initComplete = true; // complete Load is only Cat was selected.
                 }
             } else {
-                initComplete = true; // complete Load if Cat == 0. (none Selected).
+                initComplete = true; // complete Load if none Selected.
             }
 
         });
 
     </script>
-    <!-- TODO:
-
-    var myCollapsible = document.getElementById('myCollapsible')
-    myCollapsible.addEventListener('hidden.bs.collapse', function () {
-        // do something...
-    })
-
-    -->
-
-    <!-- TODO: Input Validation Question + Category unique!! -->
-    <!-- TODO: Input Validation Question + Answers unique!! -->
 
     <div class="container pb-2">
-        <h5 class="my-4 mb-4 text-center">Categoriy, Questions & Answers <button class="btn btn-primary" onclick="displayModeSwap()"><i class="fas fa-exchange-alt"></i></button></h5>
+        <h5 class="my-4 mb-4 text-center">Categoriy, Questions & Answers
+            <button class="btn btn-primary" onclick="displayModeSwap()">
+                <i class="fas fa-exchange-alt"></i>
+            </button>
+        </h5>
 
         <div class="accordion" id="accordionCat">
             <form action="{{ route('category.store') }}" method="Post">
@@ -127,10 +120,13 @@
                             @error('name')
                             @if($message != 'x')
                                 <div class="offset-3 invalid-feedback">
-
                                     <?php $duplicateCat = \App\Models\Category::withTrashed()->where('name', old('name'))->first() ?>
                                     @if($duplicateCat->trashed())
-                                        <span>Category '{{ $duplicateCat->name }}' has been Deleted at {{ $duplicateCat->deleted_at }} <a href="{{ route('category.restore', $duplicateCat) }}" class="btn btn-warning">Restore</a></span>
+                                        <span>Category '{{ $duplicateCat->name }}' has been Deleted at {{ $duplicateCat->deleted_at }}
+                                            <a href="{{ route('category.restore', $duplicateCat) }}" class="btn btn-warning">
+                                                Restore
+                                            </a>
+                                        </span>
                                     @else
                                         {{ $message }}
                                     @endif
@@ -284,31 +280,20 @@
                                                         </div>
                                                     </div>
 
-                                                @endforeach
-
-
-
-
+                                                @endforeach <!-- END Answer-->
                                             </div>
                                         </div>
 
-
-
                                     </div>
                                 </div>
-                            @endforeach
-
-
-
-
+                            @endforeach <!-- END Question -->
 
 
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @endforeach <!-- END Category -->
 
         </div>
-
     </div>
 @endsection

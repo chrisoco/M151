@@ -33,8 +33,6 @@
 
         @include('layouts.inc.navbar')
 
-        @yield('floater')
-
         <div class="container-fluid mt-1">
             @yield('content')
         </div>

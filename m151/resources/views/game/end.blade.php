@@ -10,6 +10,7 @@
                 <h1>You have scored {{ $h->points }} Points! => {{ $h->points_s }} / sec</h1>
             </div>
             <a href="{{ route('highscores.index') }}" class="btn btn-outline-primary">View Highscores</a>
+
         </div>
 
     </div>

@@ -25,11 +25,10 @@
                     Answer is correct:
                 </div>
                 <div class="col-md-4">
-                    <input type="checkbox" class="form-control" name="correct" @if($a->question->c_answer && $a->question->c_answer->id == $a->id) checked @endif>
+                    <input type="checkbox" class="form-control" name="correct"
+                           @if($a->question->c_answer && $a->question->c_answer->id == $a->id) checked @endif>
                 </div>
             </div>
-
-
 
             <div class="form-group row mt-4">
                 <div class="col-md-1 offset-3"></div>
@@ -38,6 +37,7 @@
                     <input class="btn btn-primary ml-2" type="submit" value="Update">
                 </div>
             </div>
+
         </form>
     </div>
 @endsection

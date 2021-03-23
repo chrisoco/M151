@@ -159,3 +159,11 @@ body {
     margin-right: 0.5rem !important;
     margin-left: 0.5rem !important;
 }
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    overflow-x: hidden;
+    z-index: 5;
+}

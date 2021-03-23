@@ -20,21 +20,26 @@
                 @enderror
             </div>
 
-            <!-- TODO: Dropdown Search for correct Answer? -->
             <div class="form-group row">
-                <label class="col-md-2 col-form-label offset-2 text-right">CorrectAnswer @if(count($q->answers) > 0) <span class="text-danger">*</span> @endif</label>
+                <label class="col-md-2 col-form-label offset-2 text-right">CorrectAnswer
+                    @if(count($q->answers) > 0)
+                        <span class="text-danger">*</span>
+                    @endif
+                </label>
+
                 <div class="col-md-4">
                     <select class="custom-select @error('correct_answer') is-invalid @enderror" name="correct_answer">
                         @if(!$q->c_answer)
                             <option value="" selected>No Answer Selected...</option>
                         @endif
                         @foreach($q->answers as $a)
-                            <option value="{{ $a->id }}" @if($q->c_answer && $q->c_answer->id == $a->id) selected @endif>{{ $a->value }}</option>
+                            <option value="{{ $a->id }}"
+                                    @if($q->c_answer && $q->c_answer->id == $a->id) selected @endif>{{ $a->value }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
             </div>
-
 
             <div class="form-group row mt-4">
                 <div class="col-md-1 offset-3"></div>
@@ -43,6 +48,7 @@
                     <input class="btn btn-primary ml-2" type="submit" value="Update">
                 </div>
             </div>
+
         </form>
     </div>
 @endsection

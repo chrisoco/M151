@@ -6,7 +6,8 @@
 
         <div class="container d-flex flex-wrap justify-content-center mt-5">
             @foreach($categories as $cat)
-                <a class="btn btn-primary btn-cat @if($cat->not_valid) disabled @endif " href="{{ route('start_play.cat', $cat) }}">{{ $cat->name }}</a>
+                <a class="btn btn-primary btn-cat @if($cat->not_valid) disabled @endif"
+                   href="{{ route('start_play.cat', $cat) }}">{{ $cat->name }}</a>
             @endforeach
         </div>
 

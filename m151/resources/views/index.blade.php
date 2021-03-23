@@ -24,11 +24,11 @@
             @endif
             <a class="btn btn-primary btn-index" style="font-size: 3rem" href="{{ route('highscores.index') }}">Highscores</a>
         </div>
-        <div class="row">
-            <a class="col offset-3" style="min-width: 100px" href="{{ route('session.destroy') }}">Reset Game</a>
-        </div>
-
-        {{ print_r(session()->all()) }}
+        @if(session('player_name'))
+            <div class="row">
+                <a class="col offset-3" style="min-width: 100px" href="{{ route('session.destroy') }}">Reset Settings</a>
+            </div>
+        @endif
 
         <!-- Modal -->
         @if(!session('player_name'))
@@ -58,13 +58,11 @@
                                         {{ $message }}
                                     </div>
                                 @enderror
-
                             </form>
 
                         </div>
                         <div class="modal-footer justify-content-center">
                             <button type="submit" form="playerNameForm" class="btn btn-success btn-modal">Play!</button>
-                            <!-- <button type="button" class="btn btn-secondary btn-modal" data-dismiss="modal">Close</button> -->
                         </div>
                     </div>
                 </div>
