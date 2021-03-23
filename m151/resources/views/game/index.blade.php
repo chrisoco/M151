@@ -70,8 +70,36 @@
                 </div>
             </div>
 
+            <div class="card-footer">
+                <div>Question Progress:</div>
+                <div class="progress">
+                    <?php
+                        $qTotal = count(session('q_completed')) + $q_count;
+                        $width  = round(100 / $qTotal);
+                    ?>
 
-            
+                    @error('answer')
+                        @if($message != 'c')
+                            @for($i = 1; $i < count(session('q_completed')); $i++)
+                                <div class="progress-bar bg-success border-light"  style="width: {{ $width }}%; font-weight: bold; border-style: solid;"></div>
+                            @endfor
+                            <div class="progress-bar bg-danger border-light"  style="width: {{ $width }}%; font-weight: bold; border-style: solid;"></div>
+                        @else
+                            @for($i = 0; $i < count(session('q_completed')); $i++)
+                                <div class="progress-bar bg-success border-light"  style="width: {{ $width }}%; font-weight: bold; border-style: solid;"></div>
+                            @endfor
+                        @endif
+                    @else
+                        @for($i = 0; $i < count(session('q_completed')); $i++)
+                            <div class="progress-bar bg-success border-light"  style="width: {{ $width }}%; font-weight: bold; border-style: solid;"></div>
+                        @endfor
+                    @enderror
+
+                    @for($i = 0; $i < $q_count; $i++)
+                        <div class="progress-bar bg-secondary border-light"  style="width: {{ $width }}%; font-weight: bold; border-style: solid;"></div>
+                    @endfor
+                </div>
+            </div>
 
 
         </div>

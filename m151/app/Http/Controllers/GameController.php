@@ -71,14 +71,16 @@ class GameController extends Controller
 
             } else {
 
-                $question = Question::find(session('activeQID'));
+                $questions = Question::all()->where('categories_id', session('cat'))->whereNotIn('id', session('q_completed'));
+                $question  = Question::find(session('activeQID'));
 
             }
 
         }
 
         return view('game.index', [
-            'q'   => $question,
+            'q'       => $question,
+            'q_count' => count($questions),
         ]);
 
     }
