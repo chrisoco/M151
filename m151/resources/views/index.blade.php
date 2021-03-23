@@ -49,7 +49,7 @@
 
                                 <div class="form-group row">
                                     <div class="col-8 offset-2">
-                                        <input type="text" placeholder="Username" class="form-control @error('player_name') is-invalid @enderror" name="player_name" value="{{ old('player_name') }}">
+                                        <input type="text" placeholder="Username" class="form-control @error('player_name') is-invalid @enderror" name="player_name" value="{{ old('player_name') }}" required>
                                     </div>
                                 </div>
 

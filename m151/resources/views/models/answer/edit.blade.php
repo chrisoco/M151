@@ -11,7 +11,7 @@
             <div class="form-group row">
                 <label class="col-md-2 col-form-label offset-2 text-right">Question <span class="text-danger">*</span></label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control @error('value') is-invalid @enderror" name="value" value="{{ $a->value }}">
+                    <input type="text" class="form-control @error('value') is-invalid @enderror" name="value" value="{{ $a->value }}" required>
                 </div>
                 @error('value')
                 <div class="offset-4 invalid-feedback">

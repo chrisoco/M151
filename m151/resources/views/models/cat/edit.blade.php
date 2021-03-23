@@ -11,7 +11,7 @@
             <div class="form-group row">
                 <label class="col-md-1 col-form-label offset-3">Name <span class="text-danger">*</span></label>
                 <div class="col-md-4">
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $cat->name }}">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $cat->name }}" required>
                 </div>
                 @error('name')
                     <div class="offset-4 invalid-feedback">
@@ -27,7 +27,7 @@
                     <input class="btn btn-primary ml-2" type="submit" value="Update">
                 </div>
             </div>
-            
+
         </form>
     </div>
 @endsection

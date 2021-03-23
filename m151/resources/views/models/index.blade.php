@@ -114,7 +114,7 @@
                                 Create Category:
                             </div>
                             <div class="col-md-7">
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Category Name" value="{{ old('name') }}">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Category Name" value="{{ old('name') }}" required>
                             </div>
                             <button type="submit" class="offset-1 btn btn-success"><i class="far fa-plus-square"></i></button>
                             @error('name')
@@ -178,7 +178,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <input type="hidden" name="catID" value="{{ $cat->id }}">
-                                                <input type="text" class="form-control @if(old('catID') == $cat->id) @error('question') is-invalid @enderror @endif" name="question" placeholder="Question" value="{{ old('question') }}">
+                                                <input type="text" class="form-control @if(old('catID') == $cat->id) @error('question') is-invalid @enderror @endif" name="question" placeholder="Question" value="{{ old('question') }}" required>
                                             </div>
                                             <button type="submit" class="offset-1 btn btn-success"><i class="far fa-plus-square"></i></button>
                                             @if(old('catID') == $cat->id)
@@ -233,7 +233,7 @@
                                                                     </div>
                                                                     <div class="col-md-7">
                                                                         <input type="hidden" name="qID" value="{{ $q->id }}">
-                                                                        <input type="text" class="form-control @if(old('qID') == $q->id) @error('answer') is-invalid @enderror @endif" name="answer" placeholder="Answer" value="{{ old('answer') }}">
+                                                                        <input type="text" class="form-control @if(old('qID') == $q->id) @error('answer') is-invalid @enderror @endif" name="answer" placeholder="Answer" value="{{ old('answer') }}" required>
                                                                     </div>
                                                                     <button type="submit" class="offset-1 btn btn-success"><i class="far fa-plus-square"></i></button>
                                                                     @if(old('qID') == $q->id)
@@ -256,7 +256,7 @@
                                                                             @if(count($q->answers) == 3)
                                                                                 <input type="hidden" name="correct" value="on">
                                                                             @endif
-                                                                            <input type="checkbox" class="form-control" @if(count($q->answers) == 3) checked disabled @else name="correct" @endif>
+                                                                            <input type="checkbox" class="form-control" @if(count($q->answers) == 3) checked disabled @else name="correct" @endif required>
                                                                         </div>
                                                                     </div>
                                                                 @endif
