@@ -65,7 +65,7 @@
                             <button class="btn btn-dark btn-question-footer" disabled>50 / 50 Joker</button>
                         @endif
                         <span class="btn btn-primary btn-question-footer">Points: {{ session('points') }}</span>
-                        <a class="btn btn-outline-primary btn-question-footer">Finish Quiz</a>
+                        <a href="{{ route('play.end') }}" class="btn btn-outline-primary btn-question-footer">Finish Quiz</a>
                     @enderror
                 </div>
             </div>

@@ -6,7 +6,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Answer;
 use App\Models\Category;
+use App\Models\Highscore;
 use App\Models\Question;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -178,16 +180,55 @@ class GameController extends Controller
     {
         // TODO: Create Funktion to store Highscore for over() and end()
 
+
         return view('game.over', []);
     }
 
     public function end()
     {
-        //
+        $h = $this->createHighscore();
+
+        if($h) return view('game.end', ['h' => $h]);
+
+        return redirect()->route('highscores.index');
     }
 
     public function createHighscore()
     {
+        $validator = Validator::make(session()->all(), [
+            'started_at'  => ['required'],
+            'player_name' => ['required'],
+            'cat'         => ['required'],
+            'points'      => ['required'],
+        ]);
+
+        if ($validator->fails()) { return false;}
+
+
+        $h = Highscore::create([
+            'started_at'     => session('started_at'),
+            'player_name'    => session('player_name'),
+            'categories_id'  => session('cat'),
+            'points'         => session('points'),
+            'points_s'       => 0,
+        ]);
+
+
+        $created = Carbon::parse($h->created_at);
+        $started = Carbon::parse($h->started_at);
+        $diff    = $created->diffInSeconds($started);
+
+        $h->points_s   = round($h->points / $diff, 2);
+        $h->started_at = $started;
+        $h->save();
+
+        session()->forget([
+            'cat', 'q_completed', 'points', 'started_at',
+            'activeQID', 'joker', 'jokerAnswers',
+            'errDisplayed', 'gameOver',
+        ]);
+
+        return $h;
 
     }
 

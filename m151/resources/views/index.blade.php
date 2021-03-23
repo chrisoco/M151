@@ -25,7 +25,7 @@
             <a class="btn btn-primary btn-index" style="font-size: 3rem" href="{{ route('highscores.index') }}">Highscores</a>
         </div>
         <div class="row">
-            <a class="col offset-3" style="min-width: 100px" href="{{ route('session.destroy') }}">Reset User-Name</a>
+            <a class="col offset-3" style="min-width: 100px" href="{{ route('session.destroy') }}">Reset Game</a>
         </div>
 
         {{ print_r(session()->all()) }}
@@ -49,7 +49,7 @@
 
                                 <div class="form-group row">
                                     <div class="col-8 offset-2">
-                                        <input type="text" class="form-control @error('player_name') is-invalid @enderror" name="player_name" value="{{ old('player_name') }}">
+                                        <input type="text" placeholder="Username" class="form-control @error('player_name') is-invalid @enderror" name="player_name" value="{{ old('player_name') }}">
                                     </div>
                                 </div>
 

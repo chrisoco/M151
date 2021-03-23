@@ -26,6 +26,7 @@ Route::get ('highscores'   , 'HighscoreController@index'   )->name('highscores.i
 Route::get ('joker'        , 'GameController@joker'        )->name('joker');
 Route::get ('next/{id}'    , 'GameController@endQuestion'  )->name('play.next');
 Route::get ('play/over'    , 'GameController@over'         )->name('play.over');
+Route::get ('play/end'     , 'GameController@end'          )->name('play.end');
 
 Route::post('setPlayerName'  , 'SessionController@setPlayerName'     )->name('playername.set');
 Route::get ('session/destroy', 'SessionController@destroyGameSession')->name('session.destroy');
