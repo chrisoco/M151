@@ -167,3 +167,15 @@ body {
     overflow-x: hidden;
     z-index: 5;
 }
+.bg-add {
+    background-color: #bfdbcf !important;
+}
+.bg-cat {
+    background-color: #ededed !important;
+}
+.bg-answer {
+    background-color: white !important;
+}
+.bg-err {
+    border: 3px solid #f44336 !important;
+}

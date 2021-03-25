@@ -107,7 +107,7 @@
                 @csrf
                 @method('POST')
 
-                <div class="card edit_del_span_block">
+                <div class="card edit_del_span_block bg-add">
                     <div class="card-header">
                         <div class="form-group row m-0">
                             <div class="col-form-label col-md-3">
@@ -141,7 +141,7 @@
             @foreach($categories as $cat)
                 <div class="card">
 
-                    <div class="card-header" id="{{ 'header-' . $cat->id }}">
+                    <div class="card-header bg-cat" id="{{ 'header-' . $cat->id }}">
                         <h2 class="mb-0">
                             <button id="{{ 'btn-' . $cat->id }}" class="btn btn-link text-left shadow-none" type="button" data-toggle="collapse" data-target="{{ '#collapse-' . $cat->id }}" aria-expanded="false" aria-controls="{{ '#collapse-' . $cat->id }}" onclick="setCookie('cat', '{{ $cat->id }}')">
                                 <h4>
@@ -170,7 +170,7 @@
                                 @csrf
                                 @method('POST')
 
-                                <div class="card edit_del_span_block">
+                                <div class="card edit_del_span_block bg-add">
                                     <div class="card-header">
                                         <div class="form-group row m-0">
                                             <div class="col-form-label col-md-3">
@@ -199,13 +199,13 @@
 
                                 <div class="accordion" id="accordionCatQuestion">
                                     <div class="card">
-                                        <div class="card-header" id="{{ 'header-' . $cat->id . '-' . $q->id }}">
+                                        <div class="card-header @if(count($q->answers) != 4 || is_null($q->c_answer)) bg-err @endif" id="{{ 'header-' . $cat->id . '-' . $q->id }}">
                                             <h2 class="mb-0">
-                                                <button id="{{ 'btn-' . $cat->id . '-' . $q->id }}" class="btn btn-link custom-btn-link @if(count($q->answers) != 4 || is_null($q->c_answer)) btn-outline-danger @endif text-left shadow-none" type="button" data-toggle="collapse" data-target="{{ '#collapse-' . $cat->id . '-' . $q->id }}" aria-expanded="false" aria-controls="{{ '#collapse-' . $cat->id . '-' . $q->id }}" onclick="setCookie('cat', '{{ $cat->id . '-' . $q->id }}')">
+                                                <button id="{{ 'btn-' . $cat->id . '-' . $q->id }}" class="btn btn-link custom-btn-link text-left shadow-none" type="button" data-toggle="collapse" data-target="{{ '#collapse-' . $cat->id . '-' . $q->id }}" aria-expanded="false" aria-controls="{{ '#collapse-' . $cat->id . '-' . $q->id }}" onclick="setCookie('cat', '{{ $cat->id . '-' . $q->id }}')">
                                                     <h5>Q: {{ $q->value }}</h5>
                                                 </button>
-                                                @if(count($q->answers) != 4) <span class="text-danger custom-err-msg">4 Answers needed..</span> @endif
-                                                @if(is_null($q->c_answer)) <span class="text-danger custom-err-msg">No correct Answer..</span> @endif
+                                                @if(count($q->answers) != 4) <span class="text-danger custom-err-msg">4 Answers needed.. </span> @endif
+                                                @if(is_null($q->c_answer))   <span class="text-danger custom-err-msg">No correct Answer..</span> @endif
                                                 <span style="z-index: 3; position: relative" class="edit_del_span">
                                                     <form class="d-inline" action="{{ route('question.destroy', $q) }}" method="POST">
                                                         @csrf
@@ -225,7 +225,7 @@
                                                         @csrf
                                                         @method('POST')
 
-                                                        <div class="card edit_del_span_block">
+                                                        <div class="card edit_del_span_block bg-add">
                                                             <div class="card-header">
                                                                 <div class="form-group row m-0">
                                                                     <div class="col-form-label col-md-3">
@@ -237,7 +237,7 @@
                                                                     </div>
                                                                     <button type="submit" class="offset-1 btn btn-success"><i class="far fa-plus-square"></i></button>
                                                                     @if(old('qID') == $q->id)
-                                                                        @error('question')
+                                                                        @error('answer')
                                                                         @if($message != 'x')
                                                                             <div class="offset-3 invalid-feedback">
                                                                                 {{ $message }}
@@ -256,7 +256,7 @@
                                                                             @if(count($q->answers) == 3)
                                                                                 <input type="hidden" name="correct" value="on">
                                                                             @endif
-                                                                            <input type="checkbox" class="form-control" @if(count($q->answers) == 3) checked disabled @else name="correct" @endif required>
+                                                                            <input type="checkbox" class="form-control" @if(count($q->answers) == 3) checked disabled @else name="correct" @endif>
                                                                         </div>
                                                                     </div>
                                                                 @endif
@@ -275,7 +275,7 @@
                                                                 @method('DELETE')
                                                                 <button class="btn btn-danger float-right mr-3 edit_del_span"style="z-index: 3; position: relative" type="submit" value="Löschen"><i class="fas fa-ban"></i></button>
                                                             </form>
-                                                            <p class="card-title m-0">{{ $a->value }}</p>
+                                                            <p class="card-title m-0">A: {{ $a->value }}</p>
                                                             <a href="{{ route('answer.edit', $a) }}" class="stretched-link"></a>
                                                         </div>
                                                     </div>

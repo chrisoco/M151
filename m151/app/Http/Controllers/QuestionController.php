@@ -38,10 +38,10 @@ class QuestionController extends Controller
 
         $qValues = array();
         foreach($cat->questions as $q) {
-            array_push($qValues, $q->value);
+            array_push($qValues, strtolower($q->value));
         }
 
-        if(in_array($data['question'], $qValues)) {
+        if(in_array(strtolower($data['question']), $qValues)) {
             $validator->getMessageBag()->add("question", "This Question already exists.");
             return redirect(url()->previous())
                 ->withErrors($validator)
