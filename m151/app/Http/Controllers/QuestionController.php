@@ -16,10 +16,37 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(QuestionRequest $request)
+    public function store(Request $request)
     {
 
-        $data = $request->validated();
+        $validator = Validator::make($request->all(), [
+            'catID'    => ['required'],
+            'question' => ['required'],
+        ], [
+            'required' => 'x',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect(url()->previous())
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data = $validator->getData();
+
+        $cat = Category::find($data['catID']);
+
+        $qValues = array();
+        foreach($cat->questions as $q) {
+            array_push($qValues, $q->value);
+        }
+
+        if(in_array($data['question'], $qValues)) {
+            $validator->getMessageBag()->add("question", "This Question already exists.");
+            return redirect(url()->previous())
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         Question::create([
             'value'         => $data['question'],

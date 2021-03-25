@@ -184,7 +184,7 @@
                                             @if(old('catID') == $cat->id)
                                                 @error('question')
                                                     @if($message != 'x')
-                                                        <div class="offset-2 invalid-feedback">
+                                                        <div class="offset-3 invalid-feedback">
                                                             {{ $message }}
                                                         </div>
                                                     @endif
@@ -239,7 +239,7 @@
                                                                     @if(old('qID') == $q->id)
                                                                         @error('question')
                                                                         @if($message != 'x')
-                                                                            <div class="offset-2 invalid-feedback">
+                                                                            <div class="offset-3 invalid-feedback">
                                                                                 {{ $message }}
                                                                             </div>
                                                                         @endif
