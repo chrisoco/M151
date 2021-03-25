@@ -74,7 +74,29 @@ class CategoryController extends Controller
     {
         $cat = Category::withTrashed()->find($id);
 
-        $cat->restore();
+        if($cat && $cat->trashed()) {
+            $cat->restore();
+        }
+
+        return redirect()->route('models_index');
+    }
+
+    /**
+     * Restore Deleted Category
+     *
+     * @param Category $cat
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function restoreFromOld($id)
+    {
+        $cat = Category::withTrashed()->find($id);
+
+        if($cat && $cat->trashed()) {
+            foreach ($cat->questions as $q) {
+                $q->delete();
+            }
+            $cat->restore();
+        }
 
         return redirect()->route('models_index');
     }

@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('models/edit'     , 'CategoryController@index'  )->name('models_index');
     Route::get('cat/restore/{id}', 'CategoryController@restore')->name('category.restore');
+    Route::get('cat/restore/new/{id}', 'CategoryController@restoreFromOld')->name('category.restoreFromOld');
 
     Route::resources([
         'answer'    => 'AnswerController',

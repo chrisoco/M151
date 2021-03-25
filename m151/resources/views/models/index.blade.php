@@ -126,6 +126,9 @@
                                             <a href="{{ route('category.restore', $duplicateCat) }}" class="btn btn-warning">
                                                 Restore
                                             </a>
+                                            <a href="{{ route('category.restoreFromOld', $duplicateCat) }}" class="btn btn-primary">
+                                                Create new
+                                            </a>
                                         </span>
                                     @else
                                         {{ $message }}
