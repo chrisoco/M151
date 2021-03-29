@@ -93,6 +93,21 @@ class QuestionController extends Controller
 
         $q    = Question::find($id);
         $data = $validator->getData();
+        $cat  = $q->category;
+
+        if($q->value != $data['value']) {
+            $qValues = array();
+            foreach ($cat->questions as $q) {
+                array_push($qValues, strtolower($q->value));
+            }
+
+            if (in_array(strtolower($data['value']), $qValues)) {
+                $validator->getMessageBag()->add("value", "This Question already exists.");
+                return redirect(url()->previous())
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+        }
 
         $q->fill($data)->save();
 

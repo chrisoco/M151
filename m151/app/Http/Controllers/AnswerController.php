@@ -103,6 +103,20 @@ class AnswerController extends Controller
         $a = Answer::find($id);
         $q = $a->question;
 
+        if($a->value != $data['value']) {
+            $aValues = array();
+            foreach ($q->answers as $a) {
+                array_push($aValues, strtolower($a->value));
+            }
+
+            if (in_array(strtolower($data['value']), $aValues)) {
+                $validator->getMessageBag()->add("value", "This Answer already exists.");
+                return redirect(url()->previous())
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+        }
+
         if(array_key_exists('correct', $data) && $data['correct'] == 'on') {
 
             if(is_null($q->c_answer) || $q->c_answer->id != $a->id) {
