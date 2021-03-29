@@ -205,7 +205,7 @@
                                         <div class="card-header @if(count($q->answers) != 4 || is_null($q->c_answer)) bg-err @endif" id="{{ 'header-' . $cat->id . '-' . $q->id }}">
                                             <h2 class="mb-0">
                                                 <button id="{{ 'btn-' . $cat->id . '-' . $q->id }}" class="btn btn-link custom-btn-link text-left shadow-none" type="button" data-toggle="collapse" data-target="{{ '#collapse-' . $cat->id . '-' . $q->id }}" aria-expanded="false" aria-controls="{{ '#collapse-' . $cat->id . '-' . $q->id }}" onclick="setCookie('cat', '{{ $cat->id . '-' . $q->id }}')">
-                                                    <h5>Q: {{ $q->value }}</h5>
+                                                    <h5 style="min-width: 30rem;">Q: {{ $q->value }}</h5>
                                                 </button>
                                                 @if(count($q->answers) != 4) <span class="text-danger custom-err-msg">4 Answers needed.. </span> @endif
                                                 @if(is_null($q->c_answer))   <span class="text-danger custom-err-msg">No correct Answer..</span> @endif
