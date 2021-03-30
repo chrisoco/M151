@@ -41,7 +41,7 @@
                                     disabled
                                 @endif
 
-                            >{{ $a->id .' '.$a->value }}</button>
+                            >{{ $a->value }}</button>
                         @enderror
                     @endforeach
                 </div>
