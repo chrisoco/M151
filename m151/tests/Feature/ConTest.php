@@ -1,10 +1,11 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
 
-use PHPUnit\Framework\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class ConTest extends TestCase
 {
     /**
      * A basic test example.
@@ -13,6 +14,9 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
+        $response = $this->get('/');
+
         $this->assertTrue(true);
+
     }
 }
