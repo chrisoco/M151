@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
-    /**
-     * TODO: Update Profile of Admin Acc...?
-     */
-
 {
 
     public function index()
